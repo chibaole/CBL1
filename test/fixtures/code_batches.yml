@@ -1,0 +1,30 @@
+# == Schema Information
+#
+# Table name: code_batches
+#
+#  id           :integer          not null, primary key
+#  promotion_id :integer
+#  note         :string(255)
+#  expired_at   :datetime
+#  count        :integer          default("0")
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#
+# Indexes
+#
+#  index_code_batches_on_promotion_id  (promotion_id)
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  promotion: one
+  note: MyString
+  expired_at: 2017-05-26 01:30:23
+  count: 1
+
+two:
+  promotion: two
+  note: MyString
+  expired_at: 2017-05-26 01:30:23
+  count: 1

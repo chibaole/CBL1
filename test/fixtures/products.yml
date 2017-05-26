@@ -1,0 +1,29 @@
+# == Schema Information
+#
+# Table name: products
+#
+#  id            :integer          not null, primary key
+#  name          :string(255)
+#  count         :integer
+#  specification :string(255)
+#  image         :string(255)
+#  url           :string(255)
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  count: 1
+  specification: MyString
+  image: MyString
+  url: MyString
+
+two:
+  name: MyString
+  count: 1
+  specification: MyString
+  image: MyString
+  url: MyString

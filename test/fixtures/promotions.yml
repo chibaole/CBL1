@@ -1,0 +1,29 @@
+# == Schema Information
+#
+# Table name: promotions
+#
+#  id               :integer          not null, primary key
+#  name             :string(255)
+#  started_at       :datetime
+#  state            :integer          default("0")
+#  expired_at       :datetime
+#  message_template :string(255)
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  started_at: 2017-05-26 00:53:57
+  state: 1
+  expired_at: 2017-05-26 00:53:57
+  message_template: MyString
+
+two:
+  name: MyString
+  started_at: 2017-05-26 00:53:57
+  state: 1
+  expired_at: 2017-05-26 00:53:57
+  message_template: MyString
