@@ -14,4 +14,6 @@
 
 class Product < ApplicationRecord
   has_and_belongs_to_many :promotions
+
+  validates :name, presence: true, length: { maximum: 50, too_long: "最长%{count}个字"}
 end

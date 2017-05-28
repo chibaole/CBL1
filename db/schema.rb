@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170525173214) do
+ActiveRecord::Schema.define(version: 20170528101901) do
 
   create_table "code_batches", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.integer  "promotion_id"
@@ -33,10 +33,10 @@ ActiveRecord::Schema.define(version: 20170525173214) do
   end
 
   create_table "products_promotions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
-    t.integer "products_id"
-    t.integer "promotions_id"
-    t.index ["products_id"], name: "index_products_promotions_on_products_id", using: :btree
-    t.index ["promotions_id"], name: "index_products_promotions_on_promotions_id", using: :btree
+    t.integer "product_id"
+    t.integer "promotion_id"
+    t.index ["product_id"], name: "index_products_promotions_on_product_id", using: :btree
+    t.index ["promotion_id"], name: "index_products_promotions_on_promotion_id", using: :btree
   end
 
   create_table "promotion_codes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
@@ -56,6 +56,24 @@ ActiveRecord::Schema.define(version: 20170525173214) do
     t.string   "message_template"
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
+  end
+
+  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
+    t.string   "name",                              null: false
+    t.string   "encrypted_password",   default: "", null: false
+    t.string   "auth_token"
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+    t.index ["auth_token"], name: "index_users_on_auth_token", using: :btree
+    t.index ["confirmation_token"], name: "index_users_on_confirmation_token", using: :btree
+    t.index ["name"], name: "index_users_on_name", using: :btree
   end
 
 end
