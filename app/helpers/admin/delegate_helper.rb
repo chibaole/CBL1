@@ -106,7 +106,11 @@ module Admin
     end
 
     def delegate_resource_attribute(resource, attribute)
-      value = resource.send(attribute)
+      if resource.respond_to?("remote_#{attribute}_url")
+        value = resource.send("#{attribute}_url")
+      else
+        value = resource.send(attribute)
+      end
 
       if value.nil?
         return value
@@ -184,7 +188,7 @@ module Admin
       if resource.new_record?
         delegate_resources_path
       else
-        delegate_edit_resource_path
+        delegate_resource_path(resource)
       end
     end
 
@@ -192,7 +196,7 @@ module Admin
       if resource.new_record?
         :post
       else
-        :get
+        :patch
       end
     end
 
