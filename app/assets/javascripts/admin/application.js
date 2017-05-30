@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require admin/moment
+//= require admin/bootstrap-datetimepicker
 //= require semantic-ui
-//= require turbolinks
 //= require_tree .

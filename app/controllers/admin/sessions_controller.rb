@@ -2,6 +2,8 @@ module Admin
   class SessionsController < AdminController
   	skip_before_action :authenticate_user!
 
+    layout 'plain'
+
   	def new
 
 	  end

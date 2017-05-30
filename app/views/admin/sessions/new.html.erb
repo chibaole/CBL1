@@ -1,34 +1,30 @@
-<%= flash[:alert] %>
+<div class="ui middle aligned center aligned grid">
+  <div class="column login-form">
+    <h2 class="ui teal header">
+      <div class="content">
+        登录你的账号
+      </div>
+    </h2>
+    <%= form_tag('/admin/users/sessions', method: :post, class: 'ui large form' ) do %>
+      <div class="ui stacked segment">
+        <div class="field">
+          <div class="ui left icon input">
+            <i class="user icon"></i>
+            <%= text_field_tag 'user[name]', nil, placeholder: '在这里输入用户名...' %>
+          </div>
+        </div>
 
-<div class="columns">
-  <div class="column">
-  </div>
-  <div class="column">
-    <%= form_tag('/admin/users/sessions', method: :post) do %>
-    <div class="field">
-      <%= label_tag 'user[name]', '用户名', class: 'label' %>
-      <p class="control">
-        <%= text_field_tag 'user[name]', nil, placeholder: '在这里输入用户名...', class: 'input' %>
-      </p>
-    </div>
+        <div class="field">
+          <div class="ui left icon input">
+            <i class="lock icon"></i>
+            <%= password_field_tag 'user[password]', nil, placeholder: '在这里输入密码...'%>
+          </div>
+        </div>
 
-    <div class="field">
-      <%= label_tag 'user[password]', '密码', class: 'label' %>
-      <p class="control">
-        <%= password_field_tag 'user[password]', nil, placeholder: '在这里输入密码...', class: 'input'  %>
-      </p>
-    </div>
+        <%= submit_tag '登录', class: 'ui fluid large teal submit button' %>
+      </div>
 
-    <div class="field is-grouped">
-  <p class="control">
-    <button class="button is-primary">Submit</button>
-  </p>
-  <p class="control">
-    <button class="button is-link">Cancel</button>
-  </p>
-</div>
+      <div class="ui error message"></div>
     <% end %>
-  </div>
-  <div class="column">
   </div>
 </div>
