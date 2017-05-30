@@ -9,6 +9,11 @@
   </head>
 
   <body>
-    <%= yield %>
+    <%= render 'admin/side_menu'%>
+    <div class="pusher">
+      <div id="main-wrapper">
+        <%= yield %>
+      </div>
+    </div>
   </body>
 </html>

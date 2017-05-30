@@ -19,10 +19,11 @@ module CVS
     # Warden::Manager.serialize_from_session do |id|
     #   User.find_by_id(id)
     # end
+    config.autoload_paths << Rails.root.join('lib')
 
     config.middleware.insert_after ActionDispatch::Flash, Warden::Manager do |manager|
       manager.default_strategies :password
-      manager.failure_app = UnauthorizedController
+      manager.failure_app = Admin::UnauthorizedController
     end
   end
 end

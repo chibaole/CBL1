@@ -1,20 +1,19 @@
 Rails.application.routes.draw do
+  get '/admin', to: 'admin/delegate/products#index'
+
   namespace :admin do
-    resources :code_batches
-    resources :products
-    resources :promotions
-    resources :promotion_codes
+    namespace :delegate do
+      resources :products
+      resources :promotions
+      resources :code_batches
+      resources :promotion_codes
+    end
 
-    root to: "code_batches#index"
-  end
-
-  resources :users do
-    collection do
-      resource :registrations, only: [:show, :create]
-      resource :sessions, only: [:new, :create, :destroy]
-      resource :confirmations, only: [:show]
+    resources :users, only: [] do
+      collection do
+        resource :sessions, only: [:new, :create, :destroy]
+      end
     end
   end
-
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

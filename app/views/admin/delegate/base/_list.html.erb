@@ -1,0 +1,36 @@
+
+<table class="ui very basic table">
+  <thead>
+    <tr>
+      <% @attributes.each do |attr| %>
+        <th><%= attr.humanize %></th>
+      <% end %>
+      <th>
+        <div class="ui tiny teal icon buttons">
+          <%= delegate_prev_attr_button_tag %>
+          <%= delegate_next_attr_button_tag %>
+        </div>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @resources.each do |resource| %>
+      <tr>
+        <% @attributes.each do |attr| %>
+        <td>
+          <%= delegate_resource_attribute(resource, attr) %>
+        </td>
+        <% end %>
+
+        <td>
+          <div class="ui tiny buttons">
+            <%= delegate_resource_member_buttons_tag(resource) %>
+            <%= delegate_show_resource_button_tag(resource) %>
+            <%= delegate_edit_resource_button_tag(resource) %>
+            <%= delegate_destroy_resource_button_tag(resource) %>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

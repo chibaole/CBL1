@@ -1,0 +1,10 @@
+<div class="ui segment">
+  <%= delegate_edit_resource_button_tag(@resource) %>
+
+  <div class="ui divider"></div>
+  <div class="ui grid">
+    <% @resource_model.all_attributes.each do |attr| %>
+      <%= delegate_resource_attr_tag(@resource, attr) %>
+    <% end %>
+  </div>
+</div>
