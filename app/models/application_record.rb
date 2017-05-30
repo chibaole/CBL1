@@ -28,9 +28,9 @@ class ApplicationRecord < ActiveRecord::Base
       column_attrs = self.columns_hash
       h = {}
       all_attributes.each do |attr|
-        h[attr[:column_name]] = {
+        h[attr[:attr_name]] = {
           attr_type: attr[:name],
-          attr_name: attr[:attr_name],
+          column_name: attr[:column_name],
           sql_type: column_attrs[attr[:column_name]].try(:type) || ""
         }
       end

@@ -5,7 +5,12 @@ Rails.application.routes.draw do
     namespace :delegate do
       resources :products
       resources :promotions
-      resources :code_batches
+      resources :code_batches do
+        member do
+          patch :generate_codes
+          get :codes
+        end
+      end
       resources :promotion_codes
     end
 

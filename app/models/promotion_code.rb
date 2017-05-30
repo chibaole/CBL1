@@ -21,4 +21,12 @@ class PromotionCode < ApplicationRecord
   # 手动实效: 3
   enum state: {unused: 0, used: 1, auto_expired: 2, manual_invalid: 3}
   belongs_to :code_batch
+
+  def gen_code(length=6)
+    c = rand(10**length).to_s(10)
+    while !self.class.where(code: c, state: 0).empty?
+      c = rand(10**length).to_s(10)
+    end
+    self.code = c
+  end
 end

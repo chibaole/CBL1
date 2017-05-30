@@ -77,7 +77,7 @@ module Admin
         @resource_model = resource_class.constantize
         @resource_name = resource_class.singularize.underscore
         @resource_attributes = @resource_model.attribute_names - ['created_at', 'updated_at']
-        @resource_editable_attributes = @resource_attributes - ['id', 'guid']
+        @resource_editable_attributes = @resource_model.all_attributes.map{|a| a[:attr_name]} - ['id', 'guid']
       end
 
       def attr_page

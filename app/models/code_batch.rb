@@ -9,6 +9,7 @@
 #  count        :integer          default("0")
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
+#  code_length  :integer          default("6")
 #
 # Indexes
 #
@@ -18,4 +19,15 @@
 class CodeBatch < ApplicationRecord
   belongs_to :promotion
   has_many :promotion_codes
+
+  # 生成核销码
+  def generate_codes
+    gened_size = self.promotion_codes.size
+    (self.count - gened_size).times.each do |i|
+      code = PromotionCode.new
+      code.code_batch = self
+      code.gen_code(self.code_length)
+      code.save
+    end
+  end
 end

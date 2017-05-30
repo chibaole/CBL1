@@ -1,0 +1,34 @@
+<%= form_for @resource, as: @resource_name, url: delegate_form_url(@resource), method: delegate_form_method(@resource), html: {class: 'ui form'} do |f| %>
+
+  <div class="field">
+    <%= f.label :name, '项目名称' %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :product_ids, '产品' %>
+    <%= f.select :product_ids, options_for_select(Product.all.map{|p| [p.name, p.id]}), {}, multiple: true, class: 'ui dropdown' %>
+  </div>
+
+  <div class="field">
+    <%= f.label :started_at, '项目开始日期' %>
+    <%= f.text_field :started_at, class: 'datetimepicker'%>
+  </div>
+
+  <div class="field">
+    <%= f.label :expired_at, '项目过期时间' %>
+    <%= f.text_field :expired_at, class: 'datetimepicker'%>
+  </div>
+
+  <div class="field">
+    <%= f.label :state, '项目状态' %>
+    <%= delegate_form_field_tag(f, @resource, 'state')%>
+  </div>
+
+  <div class="field">
+    <%= f.label :message_template, '短信内容模版' %>
+    <%= delegate_form_field_tag(f, @resource, 'message_template')%>
+  </div>
+
+  <%= f.submit 'OK', class: 'ui primary button' %>
+<% end %>

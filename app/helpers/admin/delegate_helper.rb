@@ -101,7 +101,15 @@ module Admin
         FOO
         .html_safe
       else
-        '------'
+        <<-FOO
+          <div class="two wide column">
+            <p class="admin-attr-name">#{ attribute[:attr_name].humanize.upcase } </p>
+          </div>
+          <div class="fourteen wide column">
+            <p class="admin-attr-val">#{attribute[:name]}</p>
+          </div>
+        FOO
+        .html_safe
       end
     end
 
@@ -165,18 +173,20 @@ module Admin
           when :float
             f.number_field attribute
           when :datetime
-            f.text_field attribute, class: 'datepicker'
+            f.text_field attribute, class: 'datetimepicker'
           else
             f.text_field attribute
           end
         else
           case attrs[attribute][:attr_type]
           when 'HasOneReflection'
-            ""
+            "XXXXXX"
           when 'HasManyReflection'
-            ""
+            "XXXXXX"
+          when 'HasAndBelongsToManyReflection'
+            "XXXXXX"
           when 'BelongsToReflection'
-            model = attrs[attribute][:attr_name].classify.constantize
+            model = attribute.classify.constantize
             f.select attribute, options_for_select(model.all.map{|m| ["#{model.to_s}#{m.id}", m.id]}, resource.send(attribute)), {}, allow_nil: false, class: 'ui dropdown'
           else
           end

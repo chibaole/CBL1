@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170528101901) do
+ActiveRecord::Schema.define(version: 20170530163345) do
 
   create_table "code_batches", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.integer  "promotion_id"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20170528101901) do
     t.integer  "count",        default: 0
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
+    t.integer  "code_length",  default: 6
     t.index ["promotion_id"], name: "index_code_batches_on_promotion_id", using: :btree
   end
 

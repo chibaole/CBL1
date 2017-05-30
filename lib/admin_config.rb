@@ -5,7 +5,12 @@ module AdminConfig
 
   def self.configure
     self.configuration ||= Configuration.new
+    puts self.configuration
     yield(self.configuration)
+  end
+
+  def self.configuration
+    @@configuration ||= Configuration.new
   end
 
   def self.member_actions(model)
@@ -77,13 +82,6 @@ module AdminConfig
     def add(model_name)
       @models[model_name] = RedisgerModel.new(model_name)
       yield(@models[model_name])
-    end
-  end
-end
-
-if Rails.env.development?
-  AdminConfig.configure do |conf|
-    conf.add('shop_order') do |model|
     end
   end
 end
