@@ -4,14 +4,15 @@
     <title>CVS</title>
     <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'admin/application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'admin/application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'admin/application', media: 'all' %>
+    <%= javascript_include_tag 'admin/application' %>
   </head>
 
   <body>
     <%= render 'admin/side_menu'%>
     <div class="pusher">
       <div id="main-wrapper">
+        <%= render 'admin/header' %>
         <%= yield %>
       </div>
     </div>

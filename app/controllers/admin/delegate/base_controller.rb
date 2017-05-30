@@ -25,6 +25,7 @@ module Admin
         if @resource.save
           redirect_to send("admin_delegate_#{@resource_name}_path", @resource)
         else
+          flash[:error] = @resource.errors.full_messages
           render :new
         end
       end
