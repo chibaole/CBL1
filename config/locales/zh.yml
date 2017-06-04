@@ -1,0 +1,17 @@
+zh:
+  activerecord:
+    models:
+      product: 产品
+      promotion: 核销项目
+      code_batch: 卡密批次
+      promotion_code: 卡密
+    attributes:
+      product:
+        id: ID
+        name: 名称
+        count: 数量
+        specification: 规格
+        image: 产品图
+        url: 原链接
+        created_at: 创建时间
+        updated_at: 修改时间

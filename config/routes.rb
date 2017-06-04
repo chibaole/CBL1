@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get '/admin', to: 'admin/delegate/products#index'
+  get '/admin', to: 'admin/dashboard#index'
 
   namespace :admin do
     namespace :delegate do
@@ -12,6 +12,12 @@ Rails.application.routes.draw do
         end
       end
       resources :promotion_codes
+    end
+
+    resources :dashboard, only: [] do
+      collection do
+        get :index
+      end
     end
 
     resources :users, only: [] do

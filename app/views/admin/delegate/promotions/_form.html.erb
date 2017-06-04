@@ -12,12 +12,22 @@
 
   <div class="field">
     <%= f.label :started_at, '项目开始日期' %>
-    <%= f.text_field :started_at, class: 'datetimepicker'%>
+    <%= f.text_field :started_at, class: 'datepicker'%>
   </div>
 
   <div class="field">
     <%= f.label :expired_at, '项目过期时间' %>
-    <%= f.text_field :expired_at, class: 'datetimepicker'%>
+    <%= f.text_field :expired_at, class: 'datepicker'%>
+  </div>
+
+  <div class="field">
+    <%= f.label :start_delivery_at, '预约配送开始' %>
+    <%= f.text_field :start_delivery_at, class: 'timepicker'%>
+  </div>
+
+  <div class="field">
+    <%= f.label :end_delivery_at, '预约配送结束' %>
+    <%= f.text_field :end_delivery_at, class: 'timepicker'%>
   </div>
 
   <div class="field">

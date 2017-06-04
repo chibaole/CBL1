@@ -10,7 +10,7 @@ module Admin
 
 	  def create
 	    authenticate_user!
-	    redirect_to '/admin'
+	    redirect_to '/admin/dashboard'
 	  end
 
 	  def destroy

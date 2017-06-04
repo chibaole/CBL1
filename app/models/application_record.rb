@@ -1,6 +1,8 @@
 class ApplicationRecord < ActiveRecord::Base
   self.abstract_class = true
 
+  include AdminRecord
+
   class << self
     # 获得所有关系属性
     def association_attributes
@@ -45,5 +47,10 @@ class ApplicationRecord < ActiveRecord::Base
       attrs = attrs.map{|a| {name: 'Normal', column_name: a, attr_name: a} } + ass
       attrs
     end
+  end
+
+  # instance methods
+  def to_str
+    "#{self.name || self.title || self.id}#(self.id)"
   end
 end

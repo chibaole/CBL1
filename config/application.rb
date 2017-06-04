@@ -27,5 +27,6 @@ module CVS
       manager.default_strategies :password
       manager.failure_app = Admin::UnauthorizedController
     end
+    config.i18n.default_locale = :zh
   end
 end

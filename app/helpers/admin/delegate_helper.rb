@@ -59,11 +59,12 @@ module Admin
     end
 
     def delegate_resource_attr_tag(resource, attribute)
+      attr_name = @resource_model.human_attribute_name(attribute[:attr_name])
       case attribute[:name]
       when 'Normal'
         <<-FOO
           <div class="two wide column">
-            <p class="admin-attr-name">#{ attribute[:attr_name].humanize.upcase } </p>
+            <p class="admin-attr-name">#{ attr_name } </p>
           </div>
           <div class="fourteen wide column">
             <p class="admin-attr-val">#{ resource.send(attribute[:column_name]) }</p>

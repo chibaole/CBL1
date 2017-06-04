@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170530163345) do
+ActiveRecord::Schema.define(version: 20170604134521) do
 
   create_table "code_batches", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.integer  "promotion_id"
@@ -52,11 +52,13 @@ ActiveRecord::Schema.define(version: 20170530163345) do
   create_table "promotions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.string   "name"
     t.datetime "started_at"
-    t.integer  "state",            default: 0
+    t.integer  "state",             default: 0
     t.datetime "expired_at"
     t.string   "message_template"
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.time     "start_delivery_at"
+    t.time     "end_delivery_at"
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
