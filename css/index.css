@@ -1,0 +1,48 @@
+.logo{
+    height: 200px;width: 200px;
+    background: #ccc;
+    margin: 50px  auto 20px;
+
+}
+.head h3{
+    color: red;
+    font-size: 1.5rem;
+    text-align: center;
+}
+ .head p{
+    font-size: 1rem;
+    color:#ccc;
+     text-align: center;
+
+}
+ .hold{
+     color: #ccc;
+     margin-left:10% ;
+ }
+ .input{
+     display: block;
+     border:none;
+     height: 20px;
+     width: 80% ;
+     border-bottom: 1px solid #ccc;
+     margin:10px auto;
+     outline: none;
+ }
+
+ button{
+     display: block;
+     width: 80%;
+     height: 50px;
+     border-radius: 5px;
+    background: #e05030;
+    color: #fff;
+     margin:30px auto;
+     font-size: 1.5rem;
+     outline: none;
+}
+ .subok{
+     margin-left: 10%;
+     color:#ccc;
+
+ }
+ /*.input :focus{outline:none}*/

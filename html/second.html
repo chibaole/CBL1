@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/second.css">
+    <link rel="stylesheet" href="../css/jquery.cxcalendar.css">
+
+    <title>卡密信息</title>
+</head>
+<body>
+        <div class="title">艾格吃饱了</div>
+        <p class="info" >您的卡密<span></span> ，可领取如下产品：</p>
+        <div class="prj_box">
+            <p class="prj-name">闲记&middot;真诚的凤梨酥  &nbsp;<span class="jiage">¥85</span> <span class="add">X 1</span></p>
+            <img class="prj_img" src="../cbl1.jpg" width="90%" alt="">
+            <a class="prj_detail" href="">查看产品详细介绍></a> <span class="last_time">领取截止时间：2017年4月5日</span>
+        </div>
+        <div class="user_info">
+            <form action="" method="get" class="form">
+                <dd><label for="name">您的姓名：</label><input id="name" name="name" type="text" class="text" /></dd>
+                <dd><label for="contact">联系电话：</label><input id="contact" name="contact" type="text" class="text" /></dd>
+                <dd>
+                    <div data-toggle="distpicker" id="where" >
+                        <span class="city">收货地址：</span>
+                        <select id="pro" data-province="省"></select>
+                        <select id="cit" data-city="市"></select>
+                        <select id="dist" data-district="区"></select>
+                    </div> 
+
+                </dd>
+                <input type="text" class="detail_addr" placeholder="详细地址">
+
+                <dd><label for="data">预约配送日期：</label><input type="text"  id="selData" class="text" name="data"/></dd>
+
+
+                <dd><button class="btn" type="submit"><a href="confirm.html" onclick="getinfo()">下一步</a> </button></dd>
+
+
+            </form>
+                <!--<button onclick="getinfo()">获取信息</button>-->
+        </div>
+                     
+</body>
+
+</html>
+<script src="../lib/jquery.js"></script>
+<script src="../lib/dist/distpicker.js"></script>
+<!--日期选择-->
+<script src="../js/jquery.cxcalendar.js"></script>
+<script>
+    $("#selData").cxCalendar();
+    var kami = localStorage.getItem('kami');
+    $(".info >span").text(kami);
+
+    function  getinfo () {
+
+        var name = $('#name').val();
+
+        var phone = $('#contact').val();
+
+        var select = $('#where select');
+
+        var getTime =  $('#selData').val();
+
+
+        var Time = localStorage.getItem("selDate");
+
+        var pro = document.getElementById("pro");
+
+        var city = document.getElementById("cit");
+
+        var dist = document.getElementById("dist");
+        var detail = $(".detail_addr");
+
+        var pro_value = pro.options[pro.selectedIndex].value;
+
+        var city_value = city.options[city.selectedIndex].value;
+
+        var dist_value = dist.options[dist.selectedIndex].value;
+
+        var detail_value = detail.val();
+
+
+        var addr = pro_value + city_value + dist_value + detail_value;
+
+        localStorage.setItem('addr',addr);
+        localStorage.setItem('name',name);
+        localStorage.setItem('phone',phone);
+        localStorage.setItem("selDate",getTime);
+        console.log(phone);
+        console.log(name);
+        console.log(Time);
+        console.log(addr);
+    }
+
+</script>

@@ -1,0 +1,57 @@
+.title{
+    text-align: center;
+    color: coral;
+    font-size: 1.5rem;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 8px;
+}
+
+
+
+.card{
+    border:1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+}
+.prj_name{
+     display: inline-block;
+     vertical-align:top ;
+    margin-left: 10px;
+ }
+.jiage{
+    text-decoration: line-through;
+}
+.add{
+    margin-left: 20px;
+    font-size: 14px;
+}
+.prj_img{
+    display: inline-block;
+}
+
+
+.info_box{
+
+    border-radius: 5px;
+    background-color: #e6e9ed;
+    margin-top: 8px;
+}
+/*ul{*/
+    /*!*border:1px solid red;*!*/
+    /*border-bottom: 1px solid red;*/
+    /**/
+/*}*/
+li{
+    display: block;
+    list-style: none;
+    min-height: 30px;
+    line-height: 30px;
+    margin: 3px 30px 3px 0px;
+    padding: 3px 3px;
+    float:left;
+    min-width: 320px;
+    white-space: normal;
+    word-break: break-all;
+    word-wrap: break-word;
+    /*border:1px solid  #666*/
+}
