@@ -22,7 +22,7 @@ module Admin
     end
 
     def delegate_edit_resource_button_tag(resource)
-      link_to '编辑', self.send("edit_admin_delegate_#{@resource_name}_path", resource), class: 'ui button '
+      link_to '编辑', self.send("edit_admin_delegate_#{@resource_name}_path", resource), class: 'ui button'
     end
 
     def delegate_show_resource_button_tag(resource)
@@ -58,16 +58,29 @@ module Admin
       .html_safe
     end
 
+    def delegate_list_tag(resource, attribute)
+      html = ""
+      resource.send(attribute[:attr_name]).each do |c|
+        html << %Q(
+          <div class="item">
+            <div class="content">
+              #{c.__to_s}
+            </div>
+          </div>
+        )
+      end
+      html
+    end
+
     def delegate_resource_attr_tag(resource, attribute)
-      attr_name = @resource_model.human_attribute_name(attribute[:attr_name])
       case attribute[:name]
       when 'Normal'
         <<-FOO
           <div class="two wide column">
-            <p class="admin-attr-name">#{ attr_name } </p>
+            <p class="admin-attr-name">#{ attribute[:attr_name].humanize.upcase } </p>
           </div>
           <div class="fourteen wide column">
-            <p class="admin-attr-val">#{ resource.send(attribute[:column_name]) }</p>
+            <p class="admin-attr-val">#{ html_escape(delegate_resource_attribute(resource, attribute[:attr_name])) }</p>
           </div>
         FOO
         .html_safe
@@ -77,7 +90,7 @@ module Admin
             <p class="admin-attr-name">#{ attribute[:attr_name].humanize.upcase } </p>
           </div>
           <div class="fourteen wide column">
-            <p class="admin-attr-val">#{resource.send(attribute[:attr_name]).try(:name) || resource.send(attribute[:attr_name]).try(:title) || attribute[:attr_name].upcase} #{resource.id}</p>
+            <p class="admin-attr-val">#{resource.__to_s}</p>
           </div>
         FOO
         .html_safe
@@ -87,7 +100,9 @@ module Admin
             <p class="admin-attr-name">#{ attribute[:attr_name].humanize.upcase } </p>
           </div>
           <div class="fourteen wide column">
-            <p class="admin-attr-val">HasMany</p>
+            <div class="ui middle aligned divided list">
+              #{delegate_list_tag(resource, attribute)}
+            </div>
           </div>
         FOO
         .html_safe
@@ -97,29 +112,29 @@ module Admin
             <p class="admin-attr-name">#{ attribute[:attr_name].humanize.upcase } </p>
           </div>
           <div class="fourteen wide column">
-            <p class="admin-attr-val">#{resource.send(attribute[:attr_name]).try(:name) || resource.send(attribute[:attr_name]).try(:title) || attribute[:attr_name].upcase} #{resource.id}</p>
+            <p class="admin-attr-val">#{resource.send(attribute[:attr_name]).__to_s}</p>
           </div>
         FOO
         .html_safe
-      else
+      when 'HasAndBelongsToManyReflection'
         <<-FOO
           <div class="two wide column">
             <p class="admin-attr-name">#{ attribute[:attr_name].humanize.upcase } </p>
           </div>
           <div class="fourteen wide column">
-            <p class="admin-attr-val">#{attribute[:name]}</p>
+            <div class="ui middle aligned divided list">
+              #{delegate_list_tag(resource, attribute)}
+            </div>
           </div>
         FOO
         .html_safe
+      else
+        "---------#{attribute[:name]}----------"
       end
     end
 
     def delegate_resource_attribute(resource, attribute)
-      if resource.respond_to?("remote_#{attribute}_url")
-        value = resource.send("#{attribute}_url")
-      else
-        value = resource.send(attribute)
-      end
+      value = resource.send(attribute)
 
       if value.nil?
         return value
@@ -144,16 +159,19 @@ module Admin
         value
       when :datetime
         value.strftime('%F %H:%M:%S')
+      when :time
+        value.strftime('%H:%M:%S')
       else
         "属性类型未知!"
       end
     end
 
     def delegate_form_field_tag(f, resource, attribute)
+      column_field = ''
       if @resource_model.defined_enums[attribute]
         f.select attribute, options_for_select(@resource_model.defined_enums[attribute].collect{|k,v| [k,k]}, resource.send(attribute)), {}, allow_nil: false, class: 'ui dropdown'
       else
-        attrs = @resource_model.attributes_with_type
+        attrs = @resource_model.u_attrs_with_sql_type
         if attrs[attribute][:attr_type] == 'Normal'
           case attrs[attribute][:sql_type]
           when :string
@@ -174,22 +192,26 @@ module Admin
           when :float
             f.number_field attribute
           when :datetime
-            f.text_field attribute, class: 'datetimepicker'
+            f.text_field attribute, class: 'datepicker'
           else
             f.text_field attribute
           end
         else
           case attrs[attribute][:attr_type]
           when 'HasOneReflection'
-            "XXXXXX"
+            "---"
           when 'HasManyReflection'
-            "XXXXXX"
-          when 'HasAndBelongsToManyReflection'
-            "XXXXXX"
+            "---"
+          when 'HasAndBelongsToMany'
+            "---"
           when 'BelongsToReflection'
-            model = attribute.classify.constantize
-            f.select attribute, options_for_select(model.all.map{|m| ["#{model.to_s}#{m.id}", m.id]}, resource.send(attribute)), {}, allow_nil: false, class: 'ui dropdown'
+            column_field = attribute.foreign_key
+            model = attrs[attribute][:attr_name].classify.constantize
+            puts '------'
+            puts resource.send(attribute)
+            f.select column_field, options_for_select(model.all.map{|m| [m.__to_s, m.id]}, resource.send(attribute)), {}, allow_nil: false, class: 'ui dropdown'
           else
+            "---"
           end
         end
       end

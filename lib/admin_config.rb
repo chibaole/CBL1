@@ -5,7 +5,6 @@ module AdminConfig
 
   def self.configure
     self.configuration ||= Configuration.new
-    puts self.configuration
     yield(self.configuration)
   end
 
@@ -82,6 +81,14 @@ module AdminConfig
     def add(model_name)
       @models[model_name] = RedisgerModel.new(model_name)
       yield(@models[model_name])
+    end
+  end
+end
+
+if Rails.env.development?
+  AdminConfig.configure do |conf|
+    conf.add('code_batch') do |model|
+      model.add_action name: 'generate_codes', method: :patch, type: :member, text: '核销码生成'
     end
   end
 end

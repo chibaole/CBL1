@@ -7,7 +7,7 @@
 
   <div class="field">
     <%= f.label :product_ids, '产品' %>
-    <%= f.select :product_ids, options_for_select(Product.all.map{|p| [p.name, p.id]}), {}, multiple: true, class: 'ui dropdown' %>
+    <%= f.select :product_ids, options_for_select(Product.all.map{|p| [p.name, p.id]}, @resource.product_ids), {}, multiple: true, class: 'ui dropdown' %>
   </div>
 
   <div class="field">
@@ -37,7 +37,7 @@
 
   <div class="field">
     <%= f.label :message_template, '短信内容模版' %>
-    <%= delegate_form_field_tag(f, @resource, 'message_template')%>
+    <%= f.text_area :message_template %>
   </div>
 
   <%= f.submit 'OK', class: 'ui primary button' %>

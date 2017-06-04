@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170604134521) do
+ActiveRecord::Schema.define(version: 20170604153927) do
 
   create_table "code_batches", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.integer  "promotion_id"
@@ -47,6 +47,21 @@ ActiveRecord::Schema.define(version: 20170604134521) do
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
     t.index ["code_batch_id"], name: "index_promotion_codes_on_code_batch_id", using: :btree
+  end
+
+  create_table "promotion_orders", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
+    t.integer  "promotion_code_id"
+    t.integer  "state"
+    t.string   "customer_name"
+    t.string   "customer_telephone"
+    t.string   "address"
+    t.datetime "reserved_delivery_date"
+    t.string   "sf_order_id"
+    t.string   "note"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.index ["promotion_code_id"], name: "index_promotion_orders_on_promotion_code_id", using: :btree
+    t.index ["sf_order_id"], name: "index_promotion_orders_on_sf_order_id", using: :btree
   end
 
   create_table "promotions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|

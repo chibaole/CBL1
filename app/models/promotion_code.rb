@@ -21,6 +21,7 @@ class PromotionCode < ApplicationRecord
   # 手动实效: 3
   enum state: {unused: 0, used: 1, auto_expired: 2, manual_invalid: 3}
   belongs_to :code_batch
+  has_one :promotion_order
 
   def gen_code(length=6)
     c = rand(10**length).to_s(10)
@@ -28,5 +29,9 @@ class PromotionCode < ApplicationRecord
       c = rand(10**length).to_s(10)
     end
     self.code = c
+  end
+
+  def __to_s
+    "#{self.class} [##{self.id}, code: #{self.code}]"
   end
 end

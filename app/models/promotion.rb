@@ -19,7 +19,7 @@ class Promotion < ApplicationRecord
   # 进行中: 1
   # 已过期: 2
   # 已失效: 3
-  enum state: {not_start: 0, starting: 1, expired: 2, void: 3}
+  enum state: {not_start: 0, starting: 1, expired: 2, not_valid: 3}
 
   has_and_belongs_to_many :products
   has_many :code_batches

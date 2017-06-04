@@ -12,6 +12,7 @@ Rails.application.routes.draw do
         end
       end
       resources :promotion_codes
+      resources :promotion_orders
     end
 
     resources :dashboard, only: [] do

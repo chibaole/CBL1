@@ -11,6 +11,14 @@ module Admin
       before_action :set_resource_model
       before_action :set_resource, only: SET_RESOURCE_FILTER
 
+      class << self
+        def append_set_resource_before_action(actions: [])
+          actions += SET_RESOURCE_FILTER
+          skip_before_action :set_resource#, only: SET_RESOURCE_FILTER
+          before_action :set_resource, only: actions
+        end
+      end
+
       def index
         @resources = @resource_model.page(page).per(count)
         @attributes = Kaminari.paginate_array(@resource_attributes).page(attr_page).per(attr_count)
@@ -25,7 +33,6 @@ module Admin
         if @resource.save
           redirect_to send("admin_delegate_#{@resource_name}_path", @resource)
         else
-          flash[:error] = @resource.errors.full_messages
           render :new
         end
       end
@@ -38,7 +45,6 @@ module Admin
         if @resource.update(resource_params)
           redirect_to send("admin_delegate_#{@resource_name}_path", @resource)
         else
-          flash[:error] = @resource.errors.full_messages
           render :edit
         end
       end
@@ -54,18 +60,16 @@ module Admin
       #-------------
       # Utils and Helper Methods
       #-------------
-
-
       #~~~~~~~~~~~~~
+      
       protected
+
       def set_resource
         if @resource_attributes.include?('guid')
-          puts 'find_by_guid'
           @resource = @resource_model.find_by_guid(params[:id])
         end
 
         if @resource.nil?
-          puts 'find_by_id'
           @resource = @resource_model.find_by_id(params[:id])
         end
       end
@@ -77,7 +81,19 @@ module Admin
         @resource_model = resource_class.constantize
         @resource_name = resource_class.singularize.underscore
         @resource_attributes = @resource_model.attribute_names - ['created_at', 'updated_at']
-        @resource_editable_attributes = @resource_model.all_attributes.map{|a| a[:attr_name]} - ['id', 'guid']
+
+        uneditable_attrs = ['id', 'guid', 'created_at', 'updated_at']
+
+        attributes = @resource_model.u_attrs_with_sql_type.reject{|k, v| k.in?(uneditable_attrs)}
+
+        @resource_editable_attributes = attributes.map {|k, v| k}
+        @permitable_params = attributes.map{|k, v|
+          if v[:attr_type] == 'Normal'
+            k.to_sym
+          elsif v[:attr_type] == 'BelongsToReflection'
+            k.foreign_key.to_sym
+          end
+        }
       end
 
       def attr_page
@@ -89,7 +105,7 @@ module Admin
       end
 
       def resource_params
-        params.require(@resource_name).permit(@resource_editable_attributes.map(&:to_sym))
+        params.require(@resource_name).permit(@permitable_params)
       end
     end
   end
