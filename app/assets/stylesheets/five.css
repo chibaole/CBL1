@@ -1,0 +1,78 @@
+
+
+.title{
+    text-align: center;
+    color: coral;
+    font-size: 1.5rem;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 8px;
+}
+
+.img{
+    height: 80px;width: 80px;
+    border-radius: 50%;
+    margin: 0 auto 10px;
+    background-color: #ccc;
+}
+.suc_title ,.suc_id{
+    margin: 0 auto;
+    /*border:1px solid #0000ff;*/
+    text-align: center;
+    color: coral;
+}
+
+
+.info_box{
+    background-color: #e6e9ed;
+    border-radius: 5px;
+    padding:10px;
+    margin-top: 30px;
+}
+
+ul li{
+    display: inline-block;
+    list-style: none;
+   min-height: 30px;
+
+}
+.li1{
+    /*border-left:1px solid #666;*/
+}
+.li2{
+    /*border-left:1px solid #ccc;*/
+    margin-left: 80px;
+}
+.service{
+    /*font-size: 30px;*/
+    color:#d4d4d4;
+    font-weight: 300;
+}
+
+.code{
+    background-color: #ccc;
+    height: 100px; width: 100px;
+    margin: 0 auto;
+
+}
+.code_info{
+    margin-top: 6px;
+    text-align: center;
+    color: #d4d4d4;
+    height: 40px;
+    /*background-color: #e6e9ed;*/
+    padding: 8px 50px;
+}
+.gotoIndex{
+    display: block;
+    width: 90%;height: 70px;
+    margin: 30px auto;
+    font-size: 25px;
+    line-height: 70px;
+    color: #fff;
+    background-color: red;
+    border-radius: 10px;
+}
+a{
+    color: #fff;
+    text-decoration: none;
+}

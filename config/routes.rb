@@ -1,6 +1,22 @@
 Rails.application.routes.draw do
   get '/admin', to: 'admin/dashboard#index'
 
+  resources :promos, only: [] do
+    collection do
+      get :code
+      post :submit_code
+      get :info
+      post :submit_info
+    end
+
+    member do
+      get :confirm_info
+      put :confirm
+      get :success
+      get :show
+    end
+  end
+
   namespace :admin do
     namespace :delegate do
       resources :products

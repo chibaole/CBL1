@@ -1,0 +1,60 @@
+.title{
+    text-align: center;
+    color: coral;
+    font-size: 1.5rem;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 8px;
+}
+}
+
+.card{
+    border:1px solid #ccc;
+    padding: 10px;
+}
+.prj_name{
+ display: inline-block;
+    vertical-align:top ;
+}
+.jiage{
+    text-decoration: line-through;
+}
+.add{
+    margin-left: 20px;
+    font-size: 14px;
+}
+.prj_img{
+    display: inline-block;
+}
+ul li{
+    list-style: none;
+    /*display:block;*/
+    float:left;
+    min-width:320px;
+    margin-right:8px;
+    white-space:normal;
+    word-break : break-all;
+    word-wrap: break-word;
+}
+.info_card{
+    margin-top: 8px;
+    border: 1px solid #ccc;
+
+}
+#reset{
+    display: inline-block;
+    border:1px solid #ccc;
+    margin: 8px 5px 10px 80%;
+}
+.btn {
+    border-radius: 5px;
+    margin-top: 100px;
+    height: 50px;
+    background-color: red;
+    text-align: center;
+    line-height: 50px;
+}
+.btn button{
+    font-size: 20px;
+    color:#fff;
+    font-family:"Microsoft YaHei"
+}
