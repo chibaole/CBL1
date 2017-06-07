@@ -1,4 +1,4 @@
-<%= form_for @resource, as: @resource_name, url: delegate_form_url(@resource), method: delegate_form_method(@resource), html: {class: 'ui form'} do |f| %>
+<%= form_for @_resource, as: @__resource_name, url: delegate_form_url(@_resource), method: delegate_form_method(@_resource), html: {class: 'ui form'} do |f| %>
 
   <div class="field">
     <%= f.label :name, '项目名称' %>
@@ -7,7 +7,7 @@
 
   <div class="field">
     <%= f.label :product_ids, '产品' %>
-    <%= f.select :product_ids, options_for_select(Product.all.map{|p| [p.name, p.id]}, @resource.product_ids), {}, multiple: true, class: 'ui dropdown' %>
+    <%= f.select :product_ids, options_for_select(Product.all.map{|p| [p.name, p.id]}, @_resource.product_ids), {}, multiple: true, class: 'ui dropdown' %>
   </div>
 
   <div class="field">
@@ -22,17 +22,12 @@
 
   <div class="field">
     <%= f.label :start_delivery_at, '预约配送开始' %>
-    <%= f.text_field :start_delivery_at, class: 'timepicker'%>
-  </div>
-
-  <div class="field">
-    <%= f.label :end_delivery_at, '预约配送结束' %>
-    <%= f.text_field :end_delivery_at, class: 'timepicker'%>
+    <%= f.text_field :start_delivery_at, class: 'datepicker'%>
   </div>
 
   <div class="field">
     <%= f.label :state, '项目状态' %>
-    <%= delegate_form_field_tag(f, @resource, 'state')%>
+    <%= delegate_form_field_tag(f, @_resource, 'state')%>
   </div>
 
   <div class="field">

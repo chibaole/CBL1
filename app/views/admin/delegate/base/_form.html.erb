@@ -1,8 +1,8 @@
-<%= form_for @resource, as: @resource_name, url: delegate_form_url(@resource), method: delegate_form_method(@resource), html: {class: 'ui form'} do |f| %>
-  <% @resource_editable_attributes.each do |attr| %>
+<%= form_for @_resource, as: @__resource_name, url: delegate_form_url(@_resource), method: delegate_form_method(@_resource), html: {class: 'ui form'} do |f| %>
+  <% @__editable_attributes.each do |attr| %>
     <div class="ui field">
-      <%= f.label attr %>
-      <%= delegate_form_field_tag(f, @resource, attr) %>
+      <%= f.label attr[:attr_name] %>
+      <%= delegate_form_field_tag(f, @_resource, attr) %>
     </div>
   <% end %>
 

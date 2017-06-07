@@ -2,7 +2,7 @@ module Admin
   module Delegate
     class PromotionsController < BaseController
       def edit
-
+        
       end
 
       private

@@ -1,0 +1,25 @@
+<div class="title">艾格吃饱了</div>
+<h3 class="info_title">您的卡密<span id="kami"><%= @promotion_order.code %></span>，已领取：</h3>
+<% @promotion_order.promotion_code.promotion.products.each do |product| %>
+  <%= render partial: 'product_card', locals: {product: product} %>
+<% end %>
+
+<div class="info_box">
+  <ul class="id_time">
+    <li>订单编号：<span><%= @promotion_order.guid %></span></li>
+    <li>兑奖时间：<span><%= @promotion_order.created_at_text%></span></li>
+  </ul>
+  <ul class="user_info">
+    <li class="name_phone"><%= @promotion_order.customer_name %> &nbsp;<span><%= @promotion_order.customer_telephone %></span></li>
+    <li><%= @promotion_order.full_address%></li>
+    <li>配送日期：2017年6月5日</li>
+  </ul>
+  <ul class="logistics" id="ul">
+    <li>物流公司：顺丰</li>
+    <li>物流单号：12345465760790</li>
+    <li >物流状态：</li>
+    <li class="log_list">2017-04-04 10:00 快件已签收，感谢使用顺丰，期待再次为您服务！</li>
+    <li class="log_list">2017-04-04 01:00 快件交给阿里爸爸，正在派送中,(联系电话：1101101101008610010）</li>
+    <li class="log_list">2017-04-04 01:00 快件交给阿里爸爸，正在派送中,(联系电话：1101101101008610010）</li>
+  </ul>
+</div>

@@ -1,21 +1,28 @@
 Rails.application.routes.draw do
-  get '/admin', to: 'admin/dashboard#index'
+  root "promos#code"
 
   resources :promos, only: [] do
     collection do
       get :code
-      post :submit_code
-      get :info
-      post :submit_info
+      post :verify
     end
 
     member do
-      get :confirm_info
-      put :confirm
       get :success
       get :show
     end
   end
+
+  resources :promotion_orders, only: [:new, :create, :show, :edit, :update] do
+    member do
+      get :confirm
+      put :do_confirm
+      patch :do_confirm
+    end
+  end
+
+
+  get '/admin', to: 'admin/dashboard#index'
 
   namespace :admin do
     namespace :delegate do

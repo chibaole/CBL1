@@ -27,7 +27,7 @@ module CVS
       manager.default_strategies :password
       manager.failure_app = Admin::UnauthorizedController
     end
-    config.i18n.default_locale = :zh
+    config.i18n.default_locale = 'zh-CN'
 
     config.active_record.time_zone_aware_types = [:datetime, :time]
   end

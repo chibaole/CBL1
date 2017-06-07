@@ -1,9 +1,11 @@
 
+<%= admin_pagipate @_resources %>
+
 <table class="ui very basic table">
   <thead>
     <tr>
-      <% @attributes.each do |attr| %>
-        <th><%= attr.humanize %></th>
+      <% @_attributes.each do |attr| %>
+        <th><%= attr[:attr_name].humanize %></th>
       <% end %>
       <th>
         <div class="ui tiny teal icon buttons">
@@ -14,17 +16,17 @@
     </tr>
   </thead>
   <tbody>
-    <% @resources.each do |resource| %>
+    <% @_resources.each do |resource| %>
       <tr>
-        <% @attributes.each do |attr| %>
+        <% @_attributes.each do |attr| %>
         <td>
-          <%= delegate_resource_attribute(resource, attr) %>
+          <%= delegate_attribute_value(resource, attr, is_list: true) %>
         </td>
         <% end %>
 
         <td>
           <div class="ui tiny buttons">
-            <%= delegate_resource_member_buttons_tag(resource) %>
+            <%= delegate_resource_member_dropdown_tag(resource) %>
             <%= delegate_show_resource_button_tag(resource) %>
             <%= delegate_edit_resource_button_tag(resource) %>
             <%= delegate_destroy_resource_button_tag(resource) %>
@@ -34,3 +36,4 @@
     <% end %>
   </tbody>
 </table>
+<%= admin_pagipate @_resources %>

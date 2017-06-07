@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170604153927) do
+ActiveRecord::Schema.define(version: 20170607080503) do
 
   create_table "code_batches", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.integer  "promotion_id"
@@ -25,12 +25,12 @@ ActiveRecord::Schema.define(version: 20170604153927) do
 
   create_table "products", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.string   "name"
-    t.integer  "count"
+    t.integer  "count",         default: 1
     t.string   "specification"
     t.string   "image"
     t.string   "url"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   create_table "products_promotions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
@@ -60,6 +60,10 @@ ActiveRecord::Schema.define(version: 20170604153927) do
     t.string   "note"
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+    t.string   "guid"
+    t.string   "province"
+    t.string   "city"
+    t.string   "distinct"
     t.index ["promotion_code_id"], name: "index_promotion_orders_on_promotion_code_id", using: :btree
     t.index ["sf_order_id"], name: "index_promotion_orders_on_sf_order_id", using: :btree
   end
@@ -72,8 +76,7 @@ ActiveRecord::Schema.define(version: 20170604153927) do
     t.string   "message_template"
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
-    t.time     "start_delivery_at"
-    t.time     "end_delivery_at"
+    t.datetime "start_delivery_at"
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|

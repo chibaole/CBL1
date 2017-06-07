@@ -26,7 +26,7 @@ class CodeBatch < ApplicationRecord
     (self.count - gened_size).times.each do |i|
       code = PromotionCode.new
       code.code_batch = self
-      code.gen_code(self.code_length)
+      code.generate_code(self.code_length)
       code.save
     end
   end

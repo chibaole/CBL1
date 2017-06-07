@@ -28,4 +28,10 @@ class ApplicationController < ActionController::Base
   def count
     @count = params[:count] || 20
   end
+  
+  # 使用参数 _c 设置核销码 @code
+  def set_active_code
+    @promotion_code = PromotionCode.active.where(code: params[:_c]).first
+    # NTOE 跳转
+  end
 end

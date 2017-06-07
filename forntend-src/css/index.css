@@ -29,17 +29,18 @@
      outline: none;
  }
 
- button{
+button {
      display: block;
      width: 80%;
      height: 50px;
      border-radius: 5px;
-    background: #e05030;
-    color: #fff;
+     background: #e05030;
+     color: #fff;
      margin:30px auto;
      font-size: 1.5rem;
      outline: none;
 }
+
  .subok{
      margin-left: 10%;
      color:#ccc;

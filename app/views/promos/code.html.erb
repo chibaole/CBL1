@@ -1,3 +1,6 @@
+<%= stylesheet_link_tag 'main', media: 'all' %>
+<%= stylesheet_link_tag 'index', media: 'all' %>
+
 <div class='head'>
   <div class="logo">
     <img src="" alt="">
@@ -6,8 +9,10 @@
   <p>你有一份美味等待领取</p>
 </div>
 
-<p class="hold">输入卡密</p>
-<input class="input" type="text" placeholder="" value="" maxlength="6">
-<button type="submit" onclick="getval()" >领取</button>
+<%= form_tag(verify_promos_path) do %>
+  <p class="hold">输入卡密</p>
+  <%= text_field_tag :_c, "", maxlength: 6, class: 'input' %>
+  <%= button_tag '领取' %>
+<% end %>
 
 <p class="subok" >已领取可查询物流</p>

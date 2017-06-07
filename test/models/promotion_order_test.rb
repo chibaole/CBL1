@@ -13,6 +13,10 @@
 #  note                   :string(255)
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
+#  guid                   :string(255)
+#  province               :string(255)
+#  city                   :string(255)
+#  distinct               :string(255)
 #
 # Indexes
 #

@@ -1,9 +1,9 @@
 <div class="title">艾格吃饱了</div>
 <h3 class="info_title">您的卡密<span id="kami"></span>，已领取：</h3>
-<div class="card">
-  <img class="prj_img" src="../cbl1.jpg" width="30%" alt="">
-  <p class="prj_name">闲记&middot;真诚的凤梨酥  &nbsp;<span class="jiage">¥85</span> <span class="add">x <sapn id="num1">1</sapn></span></p>
-</div>
+
+<% @promotion_order.promotion_code.promtion.products.each do |product| %>
+  <%= render partial: 'product_card', locals: {product: product} %>
+<% end %>
 <div class="info_box">
   <ul class="id_time">
     <li>订单编号：<span>20170000000000</span></li>

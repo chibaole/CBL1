@@ -5,3 +5,11 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+tester = User.find_by_name('tester')
+if tester.nil?
+  tester = User.new
+  tester.name = 'tester'
+  tester.password = 'testasd@'
+  tester.save
+end

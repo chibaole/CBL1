@@ -1,0 +1,37 @@
+<%= form_for @promotion_order, html: { class: 'form' } do |f| %>
+  <%= text_field_tag '_c', @promotion_code.code, class: 'hidden' %>
+  <dd>
+    <%= f.label :customer_name, '您的姓名：' %>
+    <%= f.text_field :customer_name, class: 'text', required: true %>
+  </dd>
+
+  <dd>
+    <%= f.label :customer_telephone, '联系电话：' %>
+    <%= f.text_field :customer_telephone, class: 'text', required: true  %>
+  </dd>
+
+  <dd>
+    <div data-toggle="distpicker" id="where">
+      <span class="city">收货地址：</span>
+      <%= f.select :province, [], {}, id: 'pro', 'data-province': @promotion_order.province || '省', required: true  %>
+      <%= f.select :city, [], {}, id: 'cit', 'data-city': @promotion_order.city || '市', required: true  %>
+      <%= f.select :distinct, [], {}, id: 'dist', 'data-district': @promotion_order.distinct || '区', required: true  %>
+    </div>
+  </dd>
+
+  <dd>
+    <%= f.text_field :address, placeholder: '详细地址', class: 'text', required: true  %>
+  </dd>
+
+  <dd>
+    <%= f.label :reserved_delivery_date, '预约配送日期：'%>
+    <%= f.text_field :reserved_delivery_date, id: 'selData', class: 'text', required: true %>
+  </dd>
+  <%= f.button '下一步', class: 'btn'%>
+<% end %>
+<script type="text/javascript">
+  $("#selData").cxCalendar({
+    startDate: '<%= @promotion.start_delivery_date %>',
+    endDate: '<%= @promotion.end_delivery_date %>'
+  });
+</script>

@@ -1,0 +1,12 @@
+<%= stylesheet_link_tag 'main', media: 'all' %>
+<%= stylesheet_link_tag 'second', media: 'all' %>
+<%= stylesheet_link_tag 'jquery.cxcalendar', media: 'all' %>
+
+<div class="title">艾格吃饱了</div>
+<p class="info" >您的卡密<span><%= @promotion_code.code %></span> ，可领取如下产品：</p>
+<% @promotion.products.each do |product| %>
+  <%= render partial: 'product_detail', locals: { product: product } %>
+<% end %>
+<div class="user_info">
+  <%= render 'form' %>
+</div>

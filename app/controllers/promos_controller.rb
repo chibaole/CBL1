@@ -1,5 +1,6 @@
 class PromosController < ApplicationController
   skip_before_action :authenticate_user!
+  before_action :set_active_code, only: [:verify, :exchange]
 
   # 输入核销码界面
   # GET /promos/code
@@ -7,19 +8,27 @@ class PromosController < ApplicationController
 
   end
 
-  # POST /promos/submit_code
-  def submit_code
-    # 1. 已经领取
-    # 2. 验证通过，输入信息
-  end
+  # POST /promos/verify
+  def verify
+    # 可用的核销码不存在
+    if @promotion_code.nil?
+      render :code
+      return
+    end
 
-  # GET /promos/info
-  def info
-
-  end
-
-  # POST /promos/submit_info
-  def submit_info
+    if @promotion_code.exchanged?
+      # 1. 已经领取
+      redirect_to promotion_order_path(@promotion_code.promotion_order)
+    else
+      # 2. 未领取
+      if @promotion_code.can_exchange?
+        # 可以领取
+        redirect_to new_promotion_order_path(_c: @promotion_code.code)
+      else
+        #
+        render :code
+      end
+    end
   end
 
   # GET /promos/confirm_info/:id
@@ -35,7 +44,8 @@ class PromosController < ApplicationController
   end
 
   # GET /promos/:id
-  def show
-
+  def detail
   end
+
+  private
 end

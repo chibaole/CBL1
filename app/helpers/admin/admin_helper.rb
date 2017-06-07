@@ -1,5 +1,9 @@
 module Admin
   module AdminHelper
+    def admin_pagipate(objects)
+      paginate objects, :theme => "semantic_ui", :pagination_class => "pagination-small pagination-centered"
+    end
+
     def admin_flash_message
       messages = []
       if flash[:notice].present?

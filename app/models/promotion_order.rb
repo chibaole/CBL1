@@ -13,6 +13,10 @@
 #  note                   :string(255)
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
+#  guid                   :string(255)
+#  province               :string(255)
+#  city                   :string(255)
+#  distinct               :string(255)
 #
 # Indexes
 #
@@ -21,10 +25,46 @@
 #
 
 class PromotionOrder < ApplicationRecord
+  include Guidable
   # 未处理: 0
-  # 发货中: 1
-  # 已失效: 2
-  enum state: {not_processed: 0, shipping: 1, not_valid: 2}
+  # 已确认: 1
+  # 已发货: 2
+  # 已完成: 3
+  enum state: {init: 0, confirmed: 1, shipping: 2, finished: 3}
 
   belongs_to :promotion_code
+  delegate :code, to: :promotion_code, prefix: false, allow_nil: true
+
+  def full_address
+    "#{self.province}#{self.city}#{self.distinct}#{self.address}"
+  end
+
+  def reserved_delivery_date_text
+    self.reserved_delivery_date.strftime("%Y年%m月%d日")
+  end
+
+  def created_at_text
+    self.created_at.strftime("%Y年%m月%d日")
+  end
+
+  private
+  # override @generate_guid
+  # 生成 年月日时分秒z毫秒(随机6六位数)的订单ID
+  # 比如 20170607135852z180772430
+  def generate_guid
+    begin
+      if self.guid.present?
+        return
+      end
+      timestamp = Time.now.strftime("%Y%m%d%H%M%Sz%L")
+      guid = "#{timestamp}#{rand(10**6).to_s(10)}"
+      while !self.class.where(:guid => guid).empty?
+        guid = "#{timestamp}#{rand(10**6).to_s(10)}"
+      end
+      self.guid = guid if self.guid.blank?
+
+    rescue ActiveModel::MissingAttributeError
+
+    end
+  end
 end
