@@ -10,21 +10,18 @@
 <body>
     <div class='head'>
         <div class="logo">
-            <img src="" alt="">
+            <img src="../logo.png" alt="logo">
         </div>
-        <h3>艾格吃饱了</h3>
+        <h3 class="index_title">艾格吃饱了</h3>
         <p>你有一份美味等待领取</p>
     </div>
-
-
         <p class="hold">输入卡密</p>
         <input class="input" type="text" placeholder="" value="" maxlength="6">
 
-
-
-    <button type="submit" onclick="getval()" >领取</button>
-
-    <p class="subok" >已领取可查询物流</p>
+    <div class="index_button">
+    <span onclick="getval()">领&nbsp;取</span>
+    <p class="su_text" >已领取可查询物流</p>
+    </div>
 </body>
 </html>
 <script src="../lib/jquery.js"></script>
@@ -64,8 +61,10 @@
             console.log("错了")
 
         }
+        console.log("ok")
 
     }
 
 
 </script>
+
