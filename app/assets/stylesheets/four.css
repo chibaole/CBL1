@@ -1,57 +1,90 @@
-.title{
+body,button {
+    margin:0px;
+    padding: 0px;
+    color:#313131;
+}
+.four_title{
     text-align: center;
-    color: coral;
-    font-size: 1.5rem;
-    border-bottom: 1px solid #ccc;
-    padding-bottom: 8px;
+    color: #e0502c;
+    font-size: 20px;
+    width: 100%;
+    margin-top: 32px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #f8ded7;
 }
 
-
+.cardid p{
+    font-size: 14px;
+    margin: 14px 23px;
+    color:#313131;
+    /*您的卡密*/
+}
 
 .card{
-    border:1px solid #ccc;
-    border-radius: 5px;
-    padding: 10px;
-}
-.prj_name{
-     display: inline-block;
-     vertical-align:top ;
-    margin-left: 10px;
- }
-.jiage{
-    text-decoration: line-through;
-}
-.add{
-    margin-left: 20px;
-    font-size: 14px;
+    border:1px solid #e9e9e9;
+    border-radius: 3px;
+    margin: 0px 23px;
+    padding: 12px;
+    position: relative;
+
 }
 .prj_img{
     display: inline-block;
+    width: 60px;height: 60px;
+
+}
+.prj_name{
+    display: inline-block;
+    vertical-align:top ;
+    font-size: 14px;
+    position:absolute ;
+    top:0px;
+    left:60px;
+    color: #313131;
+}
+.confirm_jiage{
+    text-decoration: line-through;
+}
+.confirm_add{
+    text-align: center;
+    font-size: 14px;
+    position: absolute;
+    top:0px;
+    right: -50px;
+
+
 }
 
 
+/*---兑奖及物流信息*/
 .info_box{
-
+    border:1px solid #f2f2f2;
     border-radius: 5px;
-    background-color: #e6e9ed;
-    margin-top: 8px;
+    background-color: #f7f7f7;
+    margin: 16px  23px auto 23px;
+    color: #b5b5b5;
+    font-size: 12px;
 }
-/*ul{*/
-    /*!*border:1px solid red;*!*/
-    /*border-bottom: 1px solid red;*/
-    /**/
-/*}*/
-li{
-    display: block;
+.info_box li {
     list-style: none;
-    min-height: 30px;
-    line-height: 30px;
-    margin: 3px 30px 3px 0px;
-    padding: 3px 3px;
-    float:left;
-    min-width: 320px;
-    white-space: normal;
     word-break: break-all;
     word-wrap: break-word;
-    /*border:1px solid  #666*/
+
 }
+.user_info li{
+
+}
+/*li{*/
+    /*display: block;*/
+    /*list-style: none;*/
+    /*min-height: 30px;*/
+    /*line-height: 30px;*/
+    /*margin: 3px 30px 3px 0px;*/
+    /*padding: 3px 3px;*/
+    /*float:left;*/
+    /*min-width: 320px;*/
+    /*white-space: normal;*/
+    /*word-break: break-all;*/
+    /*word-wrap: break-word;*/
+    /*!*border:1px solid  #666*!*/
+/*}*/

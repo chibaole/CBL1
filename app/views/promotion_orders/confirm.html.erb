@@ -1,20 +1,20 @@
 <%= stylesheet_link_tag 'main', media: 'all' %>
 <%= stylesheet_link_tag 'confirm', media: 'all' %>
 
-<div>
-  <h3 class="title" >艾格吃饱了</h3>
-</div>
+<div class="confirm_title" >艾格吃饱了</div>
+
 <div class="content">
   <div class="cardid">
-    <h4>您的卡密 <span id="kami"></span>，请确认配送信息：</h4>
+    <p>您的卡密<span id="kami"><%= @promotion_order.code %></span>，请确认配送信息：</p>
     <% @promotion_order.promotion_code.promotion.products.each do |product| %>
     <div class="card">
-      <img class="prj_img" src="<%= product.image_url %>" width="30%" alt="">
-      <p class="prj_name"><%= product.name %><span class="add">x <%= product.count %></span></p>
+      <img class="prj_img" src="<%= product.image_url %>"  alt="" />
+      <p class="prj_name"><%= product.name %><span class="confirm_jiage"></span> <span class="confirm_add">x <%= product.count %></span></p>
     </div>
     <% end %>
   </div>
 </div>
+
 
 <div class="info_card">
   <ul>
@@ -27,7 +27,15 @@
 </div>
 
 <%= form_for @promotion_order, url: do_confirm_promotion_order_path(@promotion_order) do |f| %>
-  <div class="btn">
-    <button type="submit">确认提交</button>
+  <div class="btn submit">
+    <a>确认提交</a>
+    <!-- <button type="submit">确认提交</button> -->
   </div>
 <% end %>
+<script type="text/javascript">
+  $(document).ready(function(e) {
+    $('.submit').click(function(e) {
+      $('form').submit();
+    })
+  })
+</script>

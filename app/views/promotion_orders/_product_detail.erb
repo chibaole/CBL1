@@ -1,5 +1,5 @@
 <div class="prj_box">
-  <p class="prj-name"><%= product.name %><span class="add">X <%= product.count%></span></p>
-  <img class="prj_img" src="<%= product.image_url %>" width="90%" alt="">
-  <a class="prj_detail" href="<%= product.url %>">产品详情</a> <span class="last_time">领取截止时间：<%= @promotion.expired_at_text %></span>
+    <p class="prj-name"><%= product.name %><span class="jiage"></span> <span class="add">x <%= product.count%></span></p>
+    <img class="prj_img" src="<%= product.image_url %>" width="90%" alt="">
+    <a class="prj_detail" href="<%= product.url %>">查看产品详细介绍</a> <span class="last_time">领取截止时间：<%= @promotion.expired_at_text %></span>
 </div>

@@ -2,14 +2,10 @@
 <%= stylesheet_link_tag 'second', media: 'all' %>
 <%= stylesheet_link_tag 'jquery.cxcalendar', media: 'all' %>
 
-<div class="title">艾格吃饱了</div>
-<p class="info" >您的卡密<span></span> ，可领取如下产品：</p>
+<div class="second_title">艾格吃饱了</div>
+<p class="info" >您的卡密<span><%= @promotion_code.code %></span> ，可领取如下产品：</p>
 <% @promotion.products.each do |product| %>
-  <div class="prj_box">
-    <p class="prj-name"><%= product.name %><span class="add">X <%= product.count%></span></p>
-    <img class="prj_img" src="<%= product.image_url %>" width="90%" alt="">
-    <a class="prj_detail" href="<%= product.url %>">产品详情</a> <span class="last_time">领取截止时间：<%= @promotion.expired_at_text %></span>
-  </div>
+  <%= render partial: 'product_detail', locals: { product: product } %>
 <% end %>
 <div class="user_info">
   <%= render 'form' %>
