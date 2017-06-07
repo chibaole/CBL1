@@ -40,23 +40,6 @@ body,button {
      outline: none;
  }
 
-<<<<<<< HEAD
-button {
-     display: block;
-     width: 80%;
-     height: 50px;
-     border-radius: 5px;
-     background: #e05030;
-     color: #fff;
-     margin:30px auto;
-     font-size: 1.5rem;
-     outline: none;
-}
-
- .subok{
-     margin-left: 10%;
-     color:#ccc;
-=======
  .index_button{
      border:1px solid #4a89dc;
      width: 320px;
@@ -69,7 +52,6 @@ button {
      color:#fff;
      position: relative;
 }
->>>>>>> c24a2322c2aa3b425ce283bfb3989a090aab7819
 
 
  .su_text{
