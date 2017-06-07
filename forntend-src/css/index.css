@@ -1,34 +1,46 @@
+body,button {
+    margin:0px;
+    padding: 0px;
+    color:#313131;
+}
 .logo{
-    height: 200px;width: 200px;
-    background: #ccc;
-    margin: 50px  auto 20px;
+    width: 113px;
+    margin:28px 131px 20px 131px;
+    /*border:1px solid #ccc;*/
 
 }
-.head h3{
-    color: red;
-    font-size: 1.5rem;
+.index_title{
+    color: #e0502c;
+    font-size: 20px;
+    font-weight: 400;
     text-align: center;
+    margin: 0px;
+    /*border-bottom: 1px solid #4a89dc;*/
 }
  .head p{
-    font-size: 1rem;
-    color:#ccc;
+    font-size: 14px;
+    color: #b5b5b5;
      text-align: center;
+     margin: 0;
+     /*border: 1px solid #4a89dc;*/
 
 }
  .hold{
-     color: #ccc;
-     margin-left:10% ;
+     color: #b5b5b5;
+     margin-top: 65px;
+     margin-left:47px;
  }
  .input{
      display: block;
      border:none;
      height: 20px;
      width: 80% ;
-     border-bottom: 1px solid #ccc;
+     border-bottom: 1px solid #f8ded7;
      margin:10px auto;
      outline: none;
  }
 
+<<<<<<< HEAD
 button {
      display: block;
      width: 80%;
@@ -44,6 +56,28 @@ button {
  .subok{
      margin-left: 10%;
      color:#ccc;
+=======
+ .index_button{
+     border:1px solid #4a89dc;
+     width: 320px;
+     height: 56px;
+     margin:28px auto 216px ;
+     border-radius: 10px;
+     background: #e0502c;
+     text-align: center;
+     line-height: 56px;
+     color:#fff;
+     position: relative;
+}
+>>>>>>> c24a2322c2aa3b425ce283bfb3989a090aab7819
 
+
+ .su_text{
+     /*margin-top: 38px;*/
+     position: absolute;
+     top:30px;
+
+     color:#b5b5b5;
+    font-size: 14px;
  }
  /*.input :focus{outline:none}*/

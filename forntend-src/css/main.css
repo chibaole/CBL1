@@ -11,7 +11,9 @@ body, button, input, select, textarea, h1, h2, h3, h4, h5, ul, p, fieldset {
 //清楚默认外边距
 margin: 0;
 }
-
+button{
+    padding: 0px;
+}
 ul, ol, li, dl, dt, dd, tr, td, fieldset, input {
 //去除默认内边距
 

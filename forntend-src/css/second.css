@@ -1,26 +1,46 @@
-.title{
+body,button {
+    margin:0px;
+    padding: 0px;
+    color:#313131;
+}
+.second_title{
     text-align: center;
-    color: coral;
-    font-size: 1.5rem;
-    border-bottom: 1px solid #ccc;
-    padding-bottom: 8px;
+    color: #e0502c;
+    font-size: 20px;
+    width: 100%;
+    margin-top: 32px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #f8ded7;
 }
 
 .info{
     font-size: 1rem;
+    color: #313131;
+    font-size: 14px;
+    padding-left:18px ;
+    margin: 14px auto 14px 0px;
 }
 
 .prj_box{
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-bottom: 22px;
+    border: 1px solid #f8ded7;
+    border-radius: 3px;
+    margin: auto 23px 20px 23px;
+        background: #f7f7f7;
 }
 
 .prj-name{
-    margin-left: 5%;
+    margin-left: 15px;
+    color:#313131;
+    font-size: 14px;
  }
+.jiage{
+    color: #e0502c;
+    text-decoration: line-through;
+
+
+}
 .add{
-    margin-left: 35%;
+    margin-left: 42%;
 }
 .prj_img{
     display: block;
@@ -28,16 +48,20 @@
     margin: 10px auto;
 }
 .prj_detail{
+    display: inline-block;
     text-decoration: none;
-    color: #d4d4d4;
+    color: #b5b5b5;
     padding-left: 5%;
-    font-size: 15px;
+    font-size: 12px;
+    margin-bottom: 12px;
 
 }
 .last_time{
-    font-size: 15px;
-    color: #d4d4d4;
-    margin-left: 25px;
+    display: inline-block;
+    font-size: 12px;
+    color: #b5b5b5;
+    margin-left: 20px;
+    margin-bottom: 12px;
 }
 
 .round{
@@ -52,7 +76,8 @@
 }
 
 .form{
-    /*border:1px solid red;*/
+    margin-top: 20px;
+
 
 }
 .form label{
@@ -61,18 +86,19 @@
 }
 .form dd{
     /*border:1px solid #666;*/
-    background-color: #f2f2f2;
+
+    background-color: #f7f7f7;
     height: 40px;
-    margin:20px auto;
+    margin:16px 23px ;
     line-height: 40px;
     border-radius: 5px;
 
 }
 
 .text{
-    background-color: #f2f2f2;
+    background-color: #f7f7f7;
     height: 35px;
-    min-width: 70%;
+    min-width: 80%;
     outline:none;
     border: none;
 }
@@ -89,30 +115,44 @@
 }
 select{
     /*border:1px solid #666666;*/
-    width: 80px;
+    width: 60px;
     border:0;
     border:none;
-    background-color: #f2f2f2;
+    outline: none;
+    background-color: #f7f7f7;
 
 }
 .detail_addr{
         display: block;
         margin-bottom: 5px;
+        margin-left:23px;
         outline: none;
         min-width: 70%;
+    outline: none;
+}
+#selData{
+    background: #f7f7f7;
+    outline: none;
+    border:none;
+    min-width:60% ;
 
 }
 .btn{
     display: block;
     width: 100%;
     min-height: 40px;
-    background-color: #e05030;
+    background-color: #e0502c;
+    border:#c93915;
+    border-radius: 3px;
     color:#fff;
     text-align: center;
+    margin-top: 28px;
     outline: none;
 }
 a{
     text-decoration: none;
     color: #fff;
-    font-size: 20px;
+    font-size: 15px;
+    font-weight: 300;
+    letter-spacing: 3px;
 }
