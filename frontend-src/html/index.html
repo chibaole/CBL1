@@ -18,9 +18,9 @@
         <p class="hold">输入卡密</p>
         <input class="input" type="text" placeholder="" value="" maxlength="6">
 
-    <div class="index_button">
-    <span onclick="getval()">领&nbsp;取</span>
-    <p class="su_text" >已领取可查询物流</p>
+    <div class="index_button" onclick="getval()">
+    <span>领&nbsp;取</span>
+    <p id="su_text" ></p>
     </div>
 </body>
 </html>
@@ -49,16 +49,18 @@
         }else if(mika == value){
 
             console.log('码OK已使用跳转到领取详情页');
+            $('#su_text').innerText = '已领取可查询物流';
 
             window.location.href = 'five.html'
 
         }else if(value == ''){
 
-            console.log('请输入卡密')
+            $('#su_text')[0].innerText = ' 请输入卡密'
 
         }else{
 
             console.log("错了")
+            $('#su_text')[0].innerText = ' 您的卡密有误，请确认后重新输入'
 
         }
         console.log("ok")
