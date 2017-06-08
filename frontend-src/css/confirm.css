@@ -77,6 +77,9 @@ ul li{
     margin: 8px 10px 10px 70%;
     background:#f7f7f7;
 }
+#reset a{
+    color: #313131;
+}
 .btn {
     border-radius: 5px;
     margin: 0 auto;
