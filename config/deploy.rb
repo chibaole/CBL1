@@ -1,14 +1,25 @@
 # config valid only for current version of Capistrano
 lock "3.8.1"
 
-set :application, "my_app_name"
-set :repo_url, "git@example.com:me/my_repo.git"
+set :application, "cbl"
+set :repo_url, "git@github.com:chibaole/CBL1.git"
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
+set :rbenv_ruby, '2.3.4'
+set :rbenv_ruby_dir, '/app/.rbenv/versions'
+set :rbenv_custom_path, '/app/.rbenv'
+set :rbenv_prefix, "RBENV_ROOT=#{fetch(:rbenv_custom_path)} RBENV_VERSION=#{fetch(:rbenv_ruby)} #{fetch(:rbenv_path)}/bin/rbenv exec"
+set :rbenv_map_bins, %w{rake gem bundle ruby rails}
+
 # Default deploy_to directory is /var/www/my_app_name
-# set :deploy_to, "/var/www/my_app_name"
+set :deploy_to, "/var/www/cbl"
+set :scm, :git
+set :log_level, :info
+
+set :linked_files, fetch(:linked_files, []).push("config/database.yml", ".ruby-version", "config/puma.rb", ".rbenv-vars")
+set :linked_dirs, fetch(:linked_dirs, []).push("log", "public/feeds", "tmp/cache")
 
 # Default value for :format is :airbrussh.
 # set :format, :airbrussh
