@@ -53,16 +53,20 @@ body,button {
 
 }
 
-ul li{
+.info_card ul li{
     list-style: none;
     /*display:block;*/
     float:left;
     min-width:320px;
-    margin-right:8px;
+    /*margin-right:8px;*/
+    margin-bottom:5px;
     white-space:normal;
     word-break : break-all;
     word-wrap: break-word;
     font-size:14px ;
+}
+.info_card ul li:last-child{
+    margin-top: 25px;
 }
 .info_card{
     background: #f2f2f2;
