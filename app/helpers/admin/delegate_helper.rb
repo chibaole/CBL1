@@ -120,7 +120,7 @@ module Admin
       when 'Normal'
         <<-FOO
           <div class="two wide column">
-            <p class="admin-attr-name">#{ attribute[:attr_name].humanize.upcase } </p>
+            <p class="admin-attr-name">#{ delegate_i18n_attr(attribute) } </p>
           </div>
           <div class="fourteen wide column">
             <p class="admin-attr-val">#{ html_escape(delegate_attribute_value(resource, attribute)) }</p>
@@ -130,7 +130,7 @@ module Admin
       when 'HasOneReflection'
         <<-FOO
           <div class="two wide column">
-            <p class="admin-attr-name">#{ attribute[:attr_name].humanize.upcase } </p>
+            <p class="admin-attr-name">#{ delegate_i18n_attr(attribute) } </p>
           </div>
           <div class="fourteen wide column">
             <p class="admin-attr-val">#{resource.__to_s}</p>
@@ -140,7 +140,7 @@ module Admin
       when 'HasManyReflection'
         <<-FOO
           <div class="two wide column">
-            <p class="admin-attr-name">#{ attribute[:attr_name].humanize.upcase } </p>
+            <p class="admin-attr-name">#{ delegate_i18n_attr(attribute) } </p>
           </div>
           <div class="fourteen wide column">
             <div class="ui middle aligned divided list">
@@ -152,7 +152,7 @@ module Admin
       when 'BelongsToReflection'
         <<-FOO
           <div class="two wide column">
-            <p class="admin-attr-name">#{ attribute[:attr_name].humanize.upcase } </p>
+            <p class="admin-attr-name">#{ delegate_i18n_attr(attribute) } </p>
           </div>
           <div class="fourteen wide column">
             <p class="admin-attr-val">#{resource.send(attribute[:attr_name]).__to_s}</p>
@@ -162,7 +162,7 @@ module Admin
       when 'HasAndBelongsToManyReflection'
         <<-FOO
           <div class="two wide column">
-            <p class="admin-attr-name">#{ attribute[:attr_name].humanize.upcase } </p>
+            <p class="admin-attr-name">#{ delegate_i18n_attr(attribute) } </p>
           </div>
           <div class="fourteen wide column">
             <div class="ui middle aligned divided list">
@@ -172,7 +172,7 @@ module Admin
         FOO
         .html_safe
       else
-        "---------#{attribute[:attr_name]}----------"
+        "---------#{delegate_i18n_attr(attribute)}----------"
       end
     end
 
@@ -312,6 +312,10 @@ module Admin
     # action resource url
     def delegate_action_resource_path(action, options = {})
       self.send("#{action}_admin_delegate_#{@__resource_name}_path", @_resource, options)
+    end
+
+    def delegate_i18n_attr(attr)
+      t "activerecord.attributes.#{@__resource_name}.#{attr[:attr_name]}", default: attr[:attr_name].humanize.upcase
     end
   end
 end

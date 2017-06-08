@@ -20,13 +20,11 @@ module Admin
       end
 
       def index
-        p = params.dup
-        p.delete('controller')
-        p.delete('action')
+        p = params.dup.to_unsafe_h
+        allowed_search_keys = @__resource_attriutes.select{|a| a[:column_name]}.map{|a| a[:column_name].to_s }
+        p.select!{|k, v| k.in?(allowed_search_keys) }
 
-        puts p.to_hash
-
-        @_resources = @__resource_model.where(p.to_hash).page(page).per(count)
+        @_resources = @__resource_model.where(p).page(page).per(count)
         @_attributes = Kaminari.paginate_array(@__resource_attriutes).page(attr_page).per(attr_count)
       end
 

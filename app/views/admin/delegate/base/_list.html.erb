@@ -5,7 +5,7 @@
   <thead>
     <tr>
       <% @_attributes.each do |attr| %>
-        <th><%= attr[:attr_name].humanize %></th>
+        <th><%= delegate_i18n_attr(attr) %></th>
       <% end %>
       <th>
         <div class="ui tiny teal icon buttons">

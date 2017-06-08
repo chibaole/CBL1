@@ -1,0 +1,49 @@
+zh-CN:
+  activerecord:
+    models:
+      product: 产品
+      promotion: 核销项目
+      code_batch: 核销码批次
+      promotion_code: 核销码
+      promotion_order: 核销订单
+    attributes:
+      product:
+        name: 名称
+        count: 数量
+        specification: 规格
+        image: 封面
+        url: 产品详情链接
+        price: 价格
+        promotions: 核销项目
+      promotion:
+        name: 项目名称
+        started_at: 开始日期
+        state: 状态
+        expired_at: 过期日期
+        message_template: 短信模版
+        start_delivery_at: 开始配送日期
+        products: 包含产品
+        code_batches: 包含核销码批次
+      code_batch:
+        promotion: 所属核销项目
+        note: 备注说明
+        expired_at: 过期日期
+        count: 核销码数量
+        code_length: 核销码长度
+      promotion_code:
+        code_batch: 所属批次
+        code: 核销码
+        state: 状态
+      promotion_order:
+        promotion_code: 核销码
+        state: 状态
+        customer_name: 收件人姓名
+        customer_telephone: 收件人手机号
+        address: 详细地址
+        reserved_delivery_date: 预约配送日期
+        sf_order_id: 顺丰订单号
+        note: 备注
+        guid: 订单号
+        province: 省市
+        city: 城市
+        distinct: 市区
