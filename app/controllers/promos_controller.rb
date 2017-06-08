@@ -12,7 +12,7 @@ class PromosController < ApplicationController
   def verify
     # 可用的核销码不存在
     if @promotion_code.nil?
-      render :code
+      redirect_to code_promos_path
       return
     end
 
@@ -26,7 +26,7 @@ class PromosController < ApplicationController
         redirect_to new_promotion_order_path(_c: @promotion_code.code)
       else
         #
-        render :code
+        redirect_to code_promos_path
       end
     end
   end

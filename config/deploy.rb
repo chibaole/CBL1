@@ -7,6 +7,7 @@ set :repo_url, "git@github.com:chibaole/CBL1.git"
 set :migration_role, :app
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
+set :nginx_roles, :app
 
 set :rbenv_ruby, '2.3.4'
 set :rbenv_ruby_dir, '/home/app/.rbenv/versions'
