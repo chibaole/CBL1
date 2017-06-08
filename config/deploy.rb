@@ -4,7 +4,7 @@ lock "3.8.1"
 set :application, "cbl"
 set :pty, true
 set :repo_url, "git@github.com:chibaole/CBL1.git"
-
+set :migration_role, :app
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 

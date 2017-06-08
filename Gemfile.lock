@@ -226,7 +226,7 @@ DEPENDENCIES
   byebug
   capistrano (~> 3.8)
   capistrano-faster-assets (~> 1.0)
-  capistrano-rails (~> 1.1)
+  capistrano-rails (~> 1.2)
   capistrano-rbenv (~> 2.0)
   capistrano3-nginx (~> 2.0)
   capistrano3-puma
