@@ -55,7 +55,7 @@ body,button {
 }
 
 
- .su_text{
+ #su_text{
      /*margin-top: 38px;*/
      position: absolute;
      top:30px;
