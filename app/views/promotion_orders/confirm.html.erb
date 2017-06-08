@@ -7,10 +7,7 @@
   <div class="cardid">
     <p>您的卡密<span id="kami"><%= @promotion_order.code %></span>，请确认配送信息：</p>
     <% @promotion_order.promotion_code.promotion.products.each do |product| %>
-    <div class="card">
-      <img class="prj_img" src="<%= product.image_url %>"  alt="" />
-      <p class="prj_name"><%= product.name %><span class="confirm_jiage"></span> <span class="confirm_add">x <%= product.count %></span></p>
-    </div>
+    <%= render partial: 'product_card', locals: {product: product} %>
     <% end %>
   </div>
 </div>
@@ -27,10 +24,7 @@
 </div>
 
 <%= form_for @promotion_order, url: do_confirm_promotion_order_path(@promotion_order) do |f| %>
-  <div class="btn submit">
-    <a>确认提交</a>
-    <!-- <button type="submit">确认提交</button> -->
-  </div>
+  <div class="btn submit"><button >确认提交</button></div>
 <% end %>
 <script type="text/javascript">
   $(document).ready(function(e) {

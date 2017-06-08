@@ -1,6 +1,6 @@
 class PromotionOrdersController < ApplicationController
   skip_before_action :authenticate_user!
-  before_action :set_order, only: [:show, :edit, :update, :confirm, :do_confirm]
+  before_action :set_order, only: [:show, :edit, :update, :confirm, :do_confirm, :success]
   before_action :set_active_code, only: [:new, :create, :edit]
 
   def new
@@ -78,11 +78,15 @@ class PromotionOrdersController < ApplicationController
 
     if @promotion_order.confirmed!
       # TODO 发送短信
-      redirect_to promotion_order_path(@promotion_order)
+      redirect_to success_promotion_order_path(@promotion_order)
     end
   end
 
   def show
+
+  end
+
+  def success
 
   end
 

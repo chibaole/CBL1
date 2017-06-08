@@ -10,27 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170607080503) do
+ActiveRecord::Schema.define(version: 20170608162931) do
 
   create_table "code_batches", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.integer  "promotion_id"
-    t.string   "note"
+    t.string   "note",         limit: 255
     t.datetime "expired_at"
-    t.integer  "count",        default: 0
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
-    t.integer  "code_length",  default: 6
+    t.integer  "count",                    default: 0
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+    t.integer  "code_length",              default: 6
     t.index ["promotion_id"], name: "index_code_batches_on_promotion_id", using: :btree
   end
 
   create_table "products", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
-    t.string   "name"
-    t.integer  "count",         default: 1
-    t.string   "specification"
-    t.string   "image"
-    t.string   "url"
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.string   "name",          limit: 255
+    t.integer  "count",                                              default: 1
+    t.string   "specification", limit: 255
+    t.string   "image",         limit: 255
+    t.string   "url",           limit: 255
+    t.datetime "created_at",                                                         null: false
+    t.datetime "updated_at",                                                         null: false
+    t.decimal  "price",                     precision: 10, scale: 2, default: "0.0"
   end
 
   create_table "products_promotions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
@@ -42,56 +43,56 @@ ActiveRecord::Schema.define(version: 20170607080503) do
 
   create_table "promotion_codes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.integer  "code_batch_id"
-    t.string   "code"
-    t.integer  "state",         default: 0
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.string   "code",          limit: 255
+    t.integer  "state",                     default: 0
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
     t.index ["code_batch_id"], name: "index_promotion_codes_on_code_batch_id", using: :btree
   end
 
   create_table "promotion_orders", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.integer  "promotion_code_id"
     t.integer  "state"
-    t.string   "customer_name"
-    t.string   "customer_telephone"
-    t.string   "address"
+    t.string   "customer_name",          limit: 255
+    t.string   "customer_telephone",     limit: 255
+    t.string   "address",                limit: 255
     t.datetime "reserved_delivery_date"
-    t.string   "sf_order_id"
-    t.string   "note"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-    t.string   "guid"
-    t.string   "province"
-    t.string   "city"
-    t.string   "distinct"
+    t.string   "sf_order_id",            limit: 255
+    t.string   "note",                   limit: 255
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.string   "guid",                   limit: 255
+    t.string   "province",               limit: 255
+    t.string   "city",                   limit: 255
+    t.string   "distinct",               limit: 255
     t.index ["promotion_code_id"], name: "index_promotion_orders_on_promotion_code_id", using: :btree
     t.index ["sf_order_id"], name: "index_promotion_orders_on_sf_order_id", using: :btree
   end
 
   create_table "promotions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
-    t.string   "name"
+    t.string   "name",              limit: 255
     t.datetime "started_at"
-    t.integer  "state",             default: 0
+    t.integer  "state",                         default: 0
     t.datetime "expired_at"
-    t.string   "message_template"
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.string   "message_template",  limit: 255
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
     t.datetime "start_delivery_at"
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
-    t.string   "name",                              null: false
-    t.string   "encrypted_password",   default: "", null: false
-    t.string   "auth_token"
+    t.string   "name",                 limit: 255,              null: false
+    t.string   "encrypted_password",   limit: 255, default: "", null: false
+    t.string   "auth_token",           limit: 255
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.string   "confirmation_token"
+    t.string   "current_sign_in_ip",   limit: 255
+    t.string   "last_sign_in_ip",      limit: 255
+    t.string   "confirmation_token",   limit: 255
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
+    t.datetime "created_at",                                    null: false
+    t.datetime "updated_at",                                    null: false
     t.index ["auth_token"], name: "index_users_on_auth_token", using: :btree
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", using: :btree
     t.index ["name"], name: "index_users_on_name", using: :btree

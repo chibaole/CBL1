@@ -1,0 +1,28 @@
+<%= stylesheet_link_tag 'main', media: 'all' %>
+<%= stylesheet_link_tag 'five', media: 'all' %>
+
+<div class="five_title">艾格吃饱了</div>
+
+<div class="success">
+  <div class="img"><img src="<%= asset_url('succ.png') %>" alt=""></div>
+
+  <div class="suc_title">领取成功!</div>
+  <div class="suc_id">订单编号：<%= @promotion_order.guid %></div>
+</div>
+
+<div class="info_box">
+  <ul >
+    <% @promotion_order.promotion_code.promotion.products.each do |p| %>
+    <li >领取产品：<%= p.name %></li>
+    <% end %>
+    <li>配送信息：<span class="li1"><%= @promotion_order.customer_name %> &nbsp;<%= @promotion_order.customer_telephone %></span></li>
+    <li class="li2"><%= @promotion_order.full_address %></li>
+    <li>配送日期：<span><%= @promotion_order.reserved_delivery_date_text %></span></li>
+  </ul>
+</div>
+
+<div class="service">如有问题请联系客服：123456789</div>
+<div class="code"><img src="<%= asset_url('code.png') %>" alt=""></div>
+<div class="code_info">长按扫描二维码关注艾格吃饱了获得更多产品信息</div>
+<button class="gotoIndex"><a href="/" >返回首页</a>
+</button>

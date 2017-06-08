@@ -3,9 +3,10 @@ body,button {
     padding: 0px;
     color:#313131;
 }
+
 .logo{
     width: 113px;
-    margin:28px 131px 20px 131px;
+    margin:28px auto 20px ;
     /*border:1px solid #ccc;*/
 
 }
@@ -34,7 +35,7 @@ body,button {
      display: block;
      border:none;
      height: 20px;
-     width: 80% ;
+     width: 70% ;
      border-bottom: 1px solid #f8ded7;
      margin:10px auto;
      outline: none;
@@ -54,7 +55,7 @@ body,button {
 }
 
 
- .su_text{
+ #su_text{
      /*margin-top: 38px;*/
      position: absolute;
      top:30px;

@@ -6,11 +6,6 @@ Rails.application.routes.draw do
       get :code
       post :verify
     end
-
-    member do
-      get :success
-      get :show
-    end
   end
 
   resources :promotion_orders, only: [:new, :create, :show, :edit, :update] do
@@ -18,6 +13,7 @@ Rails.application.routes.draw do
       get :confirm
       put :do_confirm
       patch :do_confirm
+      get :success
     end
   end
 

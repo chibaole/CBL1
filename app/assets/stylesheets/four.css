@@ -63,7 +63,7 @@ body,button {
     background-color: #f7f7f7;
     margin: 16px  23px auto 23px;
     color: #b5b5b5;
-    font-size: 12px;
+    font-size: 13px;
 }
 .info_box li {
     list-style: none;
@@ -71,9 +71,10 @@ body,button {
     word-wrap: break-word;
 
 }
-.user_info li{
-
+.info_box li span{
+    color: #b5b5b5;
 }
+
 /*li{*/
     /*display: block;*/
     /*list-style: none;*/
