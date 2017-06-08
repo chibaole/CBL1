@@ -52,6 +52,9 @@ body,button {
 
 
 }
+.info_card ul{
+    padding-top: 16px;
+}
 
 .info_card ul li{
     list-style: none;
@@ -71,7 +74,9 @@ body,button {
 .info_card{
     background: #f2f2f2;
     margin: 16px 23px 148px;
-    border: 1px solid #ccc;
+    border-radius: 3px;
+
+    /*border: 1px solid #ccc;*/
 
 }
 #reset{
@@ -86,7 +91,7 @@ body,button {
 }
 .btn {
     border-radius: 5px;
-    margin: 0 auto;
+    margin: 0px auto 6px;
     height: 58px;width: 326px;
     background-color: #e0502c;
     text-align: center;
