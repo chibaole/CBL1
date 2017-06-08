@@ -6,6 +6,7 @@ require "capistrano/deploy"
 require 'capistrano/rails'
 require 'capistrano/rbenv'
 require 'capistrano/faster_assets'
+require 'capistrano/nginx'
 
 # Load the SCM plugin appropriate to your project:
 #
