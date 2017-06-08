@@ -8,14 +8,14 @@ set :repo_url, "git@github.com:chibaole/CBL1.git"
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
 set :rbenv_ruby, '2.3.4'
-set :rbenv_ruby_dir, '/app/.rbenv/versions'
-set :rbenv_custom_path, '/app/.rbenv'
+set :rbenv_ruby_dir, '/home/app/.rbenv/versions'
+set :rbenv_custom_path, '/home/app/.rbenv'
 set :rbenv_prefix, "RBENV_ROOT=#{fetch(:rbenv_custom_path)} RBENV_VERSION=#{fetch(:rbenv_ruby)} #{fetch(:rbenv_path)}/bin/rbenv exec"
 set :rbenv_map_bins, %w{rake gem bundle ruby rails}
 
 # Default deploy_to directory is /var/www/my_app_name
 set :deploy_to, "/var/www/cbl"
-set :scm, :git
+# set :scm, :git
 set :log_level, :info
 
 set :linked_files, fetch(:linked_files, []).push("config/database.yml", ".ruby-version", "config/puma.rb", ".rbenv-vars")
