@@ -78,11 +78,7 @@ class PromotionOrdersController < ApplicationController
 
     if @promotion_order.confirmed!
       # NOTE 发送短信
-      SubmailLog.xsend(@promotion_order, @promotion_order.customer_telephone, {
-        code: @promotion_order.code,
-        promotion: @promotion_order.promotion.name,
-        url: promotion_order_path(@promotion_order)
-        })
+      @promotion_order.notify_sms
       redirect_to success_promotion_order_path(@promotion_order)
     end
   end

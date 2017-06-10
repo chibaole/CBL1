@@ -37,11 +37,11 @@ class SubmailLog < ApplicationRecord
 
     if response["status"] == "sucess"
       log.send_id = response["send_id"]
-      log.save!
+      log.save
     else
       log.err_code = response["code"]
       log.err_message = response["msg"]
-      log.save!
+      log.save
     end
   end
 end
