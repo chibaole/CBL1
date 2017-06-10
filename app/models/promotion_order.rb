@@ -34,6 +34,8 @@ class PromotionOrder < ApplicationRecord
 
   belongs_to :promotion_code
   delegate :code, to: :promotion_code, prefix: false, allow_nil: true
+  delegate :promotion, to: :promotion_code, prefix: false, allow_nil: true
+  has_many :submail_log, as: :submailable
 
   def full_address
     "#{self.province}#{self.city}#{self.distinct}#{self.address}"
@@ -45,6 +47,14 @@ class PromotionOrder < ApplicationRecord
 
   def created_at_text
     self.created_at.strftime("%Y年%m月%d日")
+  end
+
+  def notify_sms
+    SubmailLog.xsend(self, self.customer_telephone, {
+      code: self.code,
+      promotion: self.promotion.name,
+      url: self.guid
+      })
   end
 
   private

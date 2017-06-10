@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170608162931) do
+ActiveRecord::Schema.define(version: 20170610173918) do
 
   create_table "code_batches", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.integer  "promotion_id"
@@ -78,6 +78,21 @@ ActiveRecord::Schema.define(version: 20170608162931) do
     t.datetime "created_at",                                null: false
     t.datetime "updated_at",                                null: false
     t.datetime "start_delivery_at"
+  end
+
+  create_table "submail_logs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
+    t.integer  "msg_type",         default: 0
+    t.string   "send_id"
+    t.integer  "submailable_id"
+    t.string   "submailable_type"
+    t.string   "err_code",         default: ""
+    t.string   "err_message",      default: ""
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.index ["msg_type"], name: "index_submail_logs_on_msg_type", using: :btree
+    t.index ["send_id"], name: "index_submail_logs_on_send_id", using: :btree
+    t.index ["submailable_id"], name: "index_submail_logs_on_submailable_id", using: :btree
+    t.index ["submailable_type"], name: "index_submail_logs_on_submailable_type", using: :btree
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|

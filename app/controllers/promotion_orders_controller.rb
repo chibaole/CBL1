@@ -72,12 +72,17 @@ class PromotionOrdersController < ApplicationController
 
   def do_confirm
     unless @promotion_order.init?
-      render :confirm
+      redirect_to confirm_promotion_order_path(@promotion_order)
       return
     end
 
     if @promotion_order.confirmed!
-      # TODO 发送短信
+      # NOTE 发送短信
+      SubmailLog.xsend(@promotion_order, @promotion_order.customer_telephone, {
+        code: @promotion_order.code,
+        promotion: @promotion_order.promotion.name,
+        url: promotion_order_path(@promotion_order)
+        })
       redirect_to success_promotion_order_path(@promotion_order)
     end
   end
