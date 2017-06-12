@@ -46,4 +46,4 @@ zh-CN:
         guid: 订单号
         province: 省市
         city: 城市
-        distinct: 市区
+        district: 市区

@@ -46,6 +46,13 @@ module Admin
 
       end
 
+      def search
+        @_q = params[:q]
+        @_resources = @__resource_model.__search(params[:q], fields: (params[:fields] || [])).page(page).per(count)
+        # @_resources = @__resource_model.where(p).page(page).per(count)
+        @_attributes = Kaminari.paginate_array(@__resource_attriutes).page(attr_page).per(attr_count)
+      end
+
       def update
         if @_resource.update(resource_params)
           redirect_to send("admin_delegate_#{@__resource_name}_path", @_resource)

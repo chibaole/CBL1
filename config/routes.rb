@@ -22,16 +22,39 @@ Rails.application.routes.draw do
 
   namespace :admin do
     namespace :delegate do
-      resources :products
-      resources :promotions
+      resources :products do
+        collection do
+          get :search
+        end
+      end
+
+      resources :promotions do
+        collection do
+          get :search
+        end
+      end
+      
       resources :code_batches do
+        collection do
+          get :search
+        end
+
         member do
           patch :generate_codes
           get :codes
         end
       end
-      resources :promotion_codes
-      resources :promotion_orders
+      resources :promotion_codes do
+        collection do
+          get :search
+        end
+      end
+
+      resources :promotion_orders do
+        collection do
+          get :search
+        end
+      end
     end
 
     resources :dashboard, only: [] do

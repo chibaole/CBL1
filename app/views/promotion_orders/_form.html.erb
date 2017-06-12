@@ -15,7 +15,7 @@
       <span class="city">收货地址：</span>
       <%= f.select :province, [], {}, id: 'pro', 'data-province': @promotion_order.province || '省', required: true  %>
       <%= f.select :city, [], {}, id: 'cit', 'data-city': @promotion_order.city || '市', required: true  %>
-      <%= f.select :distinct, [], {}, id: 'dist', 'data-district': @promotion_order.distinct || '区', required: true  %>
+      <%= f.select :district, [], {}, id: 'dist', 'data-district': @promotion_order.district || '区', required: true  %>
     </div>
   </dd>
 

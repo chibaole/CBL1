@@ -16,7 +16,7 @@
 #  guid                   :string(255)
 #  province               :string(255)
 #  city                   :string(255)
-#  distinct               :string(255)
+#  district               :string(255)
 #
 # Indexes
 #
@@ -45,7 +45,7 @@ class PromotionOrder < ApplicationRecord
   }
 
   def full_address
-    "#{self.province}#{self.city}#{self.distinct}#{self.address}"
+    "#{self.province}#{self.city}#{self.district}#{self.address}"
   end
 
   def reserved_delivery_date_text

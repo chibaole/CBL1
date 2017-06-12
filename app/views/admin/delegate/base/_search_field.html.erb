@@ -1,0 +1,6 @@
+<%= form_tag "/admin/delegate/#{@__resource_name.pluralize}/search", method: :get do %>
+  <div class="ui icon input">
+    <input class="prompt" type="text" name="q" placeholder="输入要搜索的内容..." value="<%= q %>">
+    <i class="search icon"></i>
+  </div>
+<% end %>

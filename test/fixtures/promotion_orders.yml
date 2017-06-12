@@ -16,7 +16,7 @@
 #  guid                   :string(255)
 #  province               :string(255)
 #  city                   :string(255)
-#  distinct               :string(255)
+#  district               :string(255)
 #
 # Indexes
 #

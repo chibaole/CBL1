@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170610173918) do
+ActiveRecord::Schema.define(version: 20170612180153) do
 
   create_table "code_batches", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.integer  "promotion_id"
@@ -64,7 +64,7 @@ ActiveRecord::Schema.define(version: 20170610173918) do
     t.string   "guid",                   limit: 255
     t.string   "province",               limit: 255
     t.string   "city",                   limit: 255
-    t.string   "distinct",               limit: 255
+    t.string   "district",               limit: 255
     t.index ["promotion_code_id"], name: "index_promotion_orders_on_promotion_code_id", using: :btree
     t.index ["sf_order_id"], name: "index_promotion_orders_on_sf_order_id", using: :btree
   end

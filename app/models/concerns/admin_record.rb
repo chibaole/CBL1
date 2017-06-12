@@ -10,6 +10,34 @@ module AdminRecord
   end
 
   module ClassMethods
+    #
+    def __search(q = "", options = {})
+      default = {
+        fields: []
+      }
+
+      options.reverse_merge!(default)
+
+      if options[:fields].empty?
+        options[:fields] = self.columns_hash.select{|k, v| v.type == :text || v.type == :string }.map{|k, v| v.name }
+      end
+
+      query_string = []
+      query_values = []
+
+      if options[:fields].size == 0
+        return self.all
+      end
+
+      options[:fields].each do |field|
+        query_string << "#{field} LIKE ? "
+        query_values << "%#{q}%"
+      end
+      
+      self.where(query_string.join(" OR "), *query_values)
+    end
+
+
     # 关系属性
     # 返回：
     # [
