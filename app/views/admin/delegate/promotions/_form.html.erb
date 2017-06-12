@@ -1,5 +1,7 @@
 <%= form_for @_resource, as: @__resource_name, url: delegate_form_url(@_resource), method: delegate_form_method(@_resource), html: {class: 'ui form'} do |f| %>
-
+  <%= f.submit 'OK', class: 'ui small primary button' %>
+  <div class="ui divider"></div>
+  
   <div class="field">
     <%= f.label :name, '项目名称' %>
     <%= f.text_field :name %>
@@ -35,5 +37,5 @@
     <%= f.text_area :message_template %>
   </div>
 
-  <%= f.submit 'OK', class: 'ui primary button' %>
+  <%= f.submit 'OK', class: 'ui small primary button' %>
 <% end %>

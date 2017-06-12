@@ -1,4 +1,7 @@
 <%= form_for @_resource, as: @__resource_name, url: delegate_form_url(@_resource), method: delegate_form_method(@_resource), html: {class: 'ui form'} do |f| %>
+  <%= f.submit 'OK', class: 'ui small primary button' %>
+  <div class="ui divider"></div>
+  
   <% @__editable_attributes.each do |attr| %>
     <div class="ui field">
       <%= f.label attr[:attr_name] %>
@@ -6,5 +9,5 @@
     </div>
   <% end %>
 
-  <%= f.submit 'OK', class: 'ui primary button' %>
+  <%= f.submit 'OK', class: 'ui small primary button' %>
 <% end %>

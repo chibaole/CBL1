@@ -1,0 +1,22 @@
+<%= admin_pagipate @promotion_codes %>
+
+<table class="ui table">
+  <thead>
+    <tr>
+      <th>
+      核销码
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @promotion_codes.each do |code| %>
+    <tr>
+      <td>
+      <%= code.code %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= admin_pagipate @promotion_codes %>

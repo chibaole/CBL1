@@ -37,6 +37,13 @@ class PromotionOrder < ApplicationRecord
   delegate :promotion, to: :promotion_code, prefix: false, allow_nil: true
   has_many :submail_log, as: :submailable
 
+  STATE_TEXT = {
+    'init' => '未处理',
+    'confirmed' => '已确认',
+    'shipping' => '已发货',
+    'finished' => '已完成'
+  }
+
   def full_address
     "#{self.province}#{self.city}#{self.distinct}#{self.address}"
   end

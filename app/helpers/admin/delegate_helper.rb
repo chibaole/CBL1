@@ -8,17 +8,26 @@ module Admin
     # enum
     def deletage_resource_enum_tab
       menus = ""
+      const_values = {}
+      c = []
       @__resource_model.defined_enums.each do |k, enums|
+        c = @__resource_model.constants(false)
+        if c.index("#{k.upcase}_TEXT".to_sym)
+          const_values = @__resource_model.const_get("#{k.upcase}_TEXT")
+        else
+          const_values = {}
+        end
+
         menus << "<div class='ui grey inverted menu'>"
         menus << %Q(
         <a class="item" href="#{delegate_resources_path}">
-          Clear #{k}
+          所有 #{k.upcase}
         </a>
         )
         enums.each do |enum|
           menus << %Q(
           <a class="item" href="#{delegate_resources_path(Hash[k, enum[0]])} ">
-            #{enum[0]}
+            #{const_values[enum[0]] || enum[0]}
           </a>
           )
         end
@@ -84,7 +93,7 @@ module Admin
     def delegate_resource_member_button_tags(resource)
       buttons = ""
       AdminConfig.member_actions(@__resource_name).each do |action|
-        buttons << (link_to action.text, self.send("#{action.name}_admin_delegate_#{@__resource_name}_path", resource), method: action.method, class: 'ui button')
+        buttons << (link_to action.text, self.send("#{action.name}_admin_delegate_#{@__resource_name}_path", resource), method: action.method, class: 'ui teal button')
       end
       buttons.html_safe
     end
@@ -189,6 +198,10 @@ module Admin
         value = resource.send("#{attribute[:attr_name]}_url")
       end
 
+      if @__resource_model.defined_enums[attribute[:attr_name]]
+        return delegate_enum_value(resource, attribute[:attr_name])
+      end
+
       if value.nil?
         return value
       end
@@ -219,6 +232,31 @@ module Admin
       end
     end
 
+    def delegate_enum_collections(attr_name)
+      c = @__resource_model.constants(false)
+      if c.index("#{attr_name.upcase}_TEXT".to_sym)
+        const_values = @__resource_model.const_get("#{attr_name.upcase}_TEXT")
+        @__resource_model.defined_enums[attr_name].collect do |k,v|
+          [const_values[k], k]
+        end
+      else
+        @__resource_model.defined_enums[attr_name].collect do |k,v| 
+          [k,k]
+        end
+      end
+    end
+
+    def delegate_enum_value(resource, attr_name)
+      c = @__resource_model.constants(false)
+      value = resource.send(attr_name)
+      if c.index("#{attr_name.upcase}_TEXT".to_sym)
+        const_values = @__resource_model.const_get("#{attr_name.upcase}_TEXT")
+        const_values[value]
+      else
+        value
+      end
+    end
+
     # 属性的FormTag
     def delegate_form_field_tag(f, resource, attribute)
       if attribute.is_a?(String)
@@ -231,7 +269,7 @@ module Admin
 
       column_field = ''
       if @__resource_model.defined_enums[attribute[:attr_name]]
-        f.select attribute[:attr_name], options_for_select(@__resource_model.defined_enums[attribute[:attr_name]].collect{|k,v| [k,k]}, resource.send(attribute[:attr_name])), {}, allow_nil: false, class: 'ui dropdown'
+        f.select attribute[:attr_name], options_for_select(delegate_enum_collections(attribute[:attr_name]), resource.send(attribute[:attr_name])), {}, allow_nil: false, class: 'ui dropdown'
       else
         if attribute[:attr_type] == 'Normal'
           case attribute[:sql_type]

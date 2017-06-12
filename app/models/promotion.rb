@@ -25,6 +25,13 @@ class Promotion < ApplicationRecord
 
   validates :name, :started_at, :expired_at, :message_template, :start_delivery_at, presence: true
 
+  STATE_TEXT = {
+    'not_start' => '未开始',
+    'starting' => '进行中',
+    'expired' => '已过期',
+    'not_valid' => '已失效'
+  }
+
   def start_delivery_date
     if self.start_delivery_at && self.start_delivery_at > Time.now
       self.start_delivery_at.strftime("%F")
