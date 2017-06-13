@@ -20,6 +20,8 @@
 #  index_submail_logs_on_submailable_type  (submailable_type)
 #
 
+require 'message_sender'
+
 class SubmailLog < ApplicationRecord
   enum msg_type: {message: 0}
 
@@ -29,7 +31,7 @@ class SubmailLog < ApplicationRecord
     Rails.logger.info "发送短信: #{phone_number}, @vars: #{vars}"
 
     message_sender = MessageSender.new(phone_number, '', vars)
-    response = message_sender.xsend()
+    response = JSON.parse(message_sender.xsend())
 
     log = SubmailLog.new
     log.msg_type = SubmailLog.msg_types['message']

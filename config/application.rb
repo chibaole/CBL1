@@ -20,6 +20,8 @@ module CVS
     #   User.find_by_id(id)
     # end
     config.autoload_paths << Rails.root.join('lib')
+    require 'message_sender'
+    require 'submail'
 
     config.time_zone = 'Asia/Shanghai'
 
